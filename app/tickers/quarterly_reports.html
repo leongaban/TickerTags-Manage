@@ -1,0 +1,150 @@
+<div class="view quarterly-reports-view">
+    <div class="container reports-container">
+    	<header>
+	    	<h1>{{ qrc.headerTitle }}</h1>
+    	</header>
+    </div>
+    <div class="container">
+      <table border="0">
+        <tr>
+          <td>Name</td>
+          <td>Periods</td>
+          <td>Start Date</td>
+          <td ng-show="qrc.new_config.period_type=='quarterly'">Fiscal Year</td>
+          <td ng-show="qrc.new_config.period_type=='quarterly'">Fiscal Period</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><input type="text" ng-model="qrc.new_config.name"></td>
+          <td><select ng-model="qrc.new_config.period_type">
+              <option value="weekly">weekly</option>
+              <option value="biweekly">biweekly</option>
+              <option value="monthly">monthly</option>
+              <option value="quarterly">quarterly</option>
+              <option value="yearly">yearly</option>
+            </select></td>
+          <td><input type="text" ng-model="qrc.new_config.start_date"></td>
+          <td ng-show="qrc.new_config.period_type=='quarterly'"><input type="text" ng-model="qrc.new_config.start_year" ng-show="qrc.new_config.period_type=='quarterly'"></td>
+          <td ng-show="qrc.new_config.period_type=='quarterly'"><input type="text" ng-model="qrc.new_config.start_period" ng-show="qrc.new_config.period_type=='quarterly'"></td>
+          <td><input type="submit" ng-click="qrc.addConfig(qrc.new_config)" value="Add Config"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="container">
+      <table border="0">
+        <tr>
+          <td>Viewing: <select ng-model="qrc.ticker_period_config_id" ng-change="qrc.loadReportData(qrc.ticker_period_config_id)">
+              <option ng-repeat="config in qrc.ticker_configs" value="{{config.id}}">{{config.name}}</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="container">
+      <table border="0">
+        <tr>
+          <td>
+            <table border="0">
+              <tr height="24">
+                  <td>Q</td>
+                  <td>Start</td>
+                  <td>End</td>
+              </tr>
+              <tr ng-repeat="period in qrc.ticker_periods" height="30">
+                <td><input ng-disabled="true" type="text" size="8" ng-model="period.repr" ng-change="qrc.changeTickerPeriod(period.repr)" ng-class="{'quarterly-reports-invalid-period': period.invalid}"></td>
+                <td><input type="text" size="8" ng-model="period.start_date" ng-change="period.start_epoch=qrc.setEpoch(period.start_date, period.start_epoch, $index, false)"></td>
+                <td><input type="text" size="8" ng-model="period.end_date" ng-change="period.end_epoch=qrc.setEpoch(period.end_date, period.end_epoch, $index, true)"></td>
+              </tr>
+              <tr height="30">
+                  <td colspan="3"><input type="submit" ng-click="qrc.saveTickerPeriods(qrc.ticker_periods)" value="Save"></td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table border="0">
+                <tr height="30">
+                    <td><input placeholder="Profit" type="text" size="10" ng-model="qrc.new_period_data.name"><select ng-model="qrc.new_period_data.data_type"><option value="dollars" ng-selected="qrc.new_period_data.data_type == 'dollars'">dollars</option><option value="units" ng-selected="qrc.new_period_data.data_type == 'units'">units</option><option value="percent" ng-selected="qrc.new_period_data.data_type == 'percent'">percent</option></select></td>
+                </tr>
+                <tr ng-repeat="period in qrc.new_period_data.periods" height="30">
+                    <td><input type="text"  ng-model="period.value"></td>
+                </tr>
+                <tr height="30">
+                    <td><input type="submit" ng-click="qrc.saveQuartersData(qrc.new_period_data, true)"></td>
+                </tr>
+            </table>
+          </td>
+          <td ng-repeat="data in qrc.ticker_period_data">
+            <table>
+                <tr height="30">
+                    <td><input type="text" size="8" ng-model="data.name"><select ng-model="data.data_type"><option value="dollars" ng-selected="data.data_type == 'dollars'">dollars</option><option value="units" ng-selected="data.data_type == 'units'">units</option><option value="percent" ng-selected="data.data_type == 'percent'">percent</option></select></td>
+                </tr>
+                <tr ng-repeat="period in data.periods" height="30">
+                    <td><input type="text" ng-model="period.value"></td>
+                </tr>
+                <tr height="30">
+                    <td><input type="submit" ng-click="qrc.saveQuartersData(data, false)" value="Save">
+                    <input type="submit" ng-click="qrc.deleteQuartersData(data)" value="Delete"></td>
+                </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="container">
+      <table>
+        <tr>
+          <td><input type="submit" ng-click="qrc.createReport(qrc.ticker_period_config_id)" value="New Report"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="container" ng-repeat="report in qrc.ticker_reports">
+      <table>
+        <tr height="30px">
+          <td>
+              <input type="text" ng-model="report.selected" placeholder="Search Ticker Tags" uib-typeahead="item.term for item in qrc.getMatches($viewValue)" typeahead-on-select="qrc.addReportTermId(report, $item)" typeahead-min-length='2' class="form-control" typeahead-show-hint="true">
+          </td>
+        </tr>
+        <tr height="30px">
+          <td><h3>Ticker Tags: </h3></td>
+        </tr>
+        <tr height="30px">
+          <td><span ng-repeat="term in report.data.terms">
+              <input type="checkbox" ng-click="qrc.removeReportTermId(report, term.id)" ng-checked="report.data.term_ids.indexOf(term.id) !== -1">{{ term.term }}&nbsp;</span></td>
+        </tr>
+        <tr height="30px">
+          <td><h3>Data Points: </h3></td>
+        </tr>
+        <tr height="30px">
+          <td><select ng-model="report.data.data_id" ng-change="qrc.toggleReportDataPoint(report, report.data.data_id)"><option ng-repeat="data in qrc.ticker_period_data" value="{{data.id}}">{{ data.name }}</option></select></td>
+        </tr>
+        <tr height="30px">
+          <td>
+              <h3>Report Comparison: </h3>
+              <select ng-model="report.data.report_period" ng-change="qrc.toggleReportReportPeriod(report, report.data.report_period)">
+                  <option value="pop">PoP</option>
+                  <option value="yoy">YoY</option>
+              </select>
+          </td>
+        </tr>
+          <tr height="30px">
+              <td>
+                  <quarterly-report
+                          index="$index"
+                          report="report"
+                          medias="qrc.medias"
+                          on-run="qrc.runQuarterlyReport(report)"
+                          on-delete="qrc.deleteReport(report, index)"></quarterly-report>
+              </td>
+
+          </tr>
+
+      </table>
+    </div>
+    <div class="container">
+      <table>
+        <tr>
+          <td height="300px">&nbsp;</td>
+        </tr>
+      </table>
+   </div>
+</div>

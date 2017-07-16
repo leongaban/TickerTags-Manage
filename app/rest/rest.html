@@ -1,0 +1,47 @@
+<div class="view rest-view">
+    <div class="container rest-view-container">
+        <header>
+            <h1>REST API</h1>
+        </header>
+
+        <section class="rest-grid">
+            <header>
+                <ul>
+                    <li>GET</li>
+                    <li>POST</li>
+                    <li>PUT</li>
+                    <li>DELETE</li>
+                </ul>
+            </header>
+            <section class="rest-grid-body">
+                <div class="rest-grid-col">
+                    <div class="rest-item" ng-repeat="get in _rest.getCol">
+                        <p class="desc" ng-click="_rest.openModal(get)">{{ get.description }}</p>
+                        <p class="url">{{ get.resource }}</p>
+                    </div>
+                </div>
+
+                <div class="rest-grid-col">
+                    <div class="rest-item" ng-repeat="post in _rest.postCol">
+                        <p class="desc" ng-click="_rest.openModal(post)">{{ post.description }}</p>
+                        <p class="url">{{ post.resource }}</p>
+                    </div>
+                </div>
+
+                <div class="rest-grid-col">
+                    <div class="rest-item" ng-repeat="put in _rest.putCol">
+                        <p class="desc" ng-click="_rest.openModal(put)">{{ put.description }}</p>
+                        <p class="url">{{ put.resource }}</p>
+                    </div>
+                </div>
+
+                <div class="rest-grid-col">
+                    <div class="rest-item" ng-repeat="del in _rest.deleteCol">
+                        <p class="desc" ng-click="_rest.openModal(del)">{{ del.description }}</p>
+                        <p class="url">{{ del.resource }}</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

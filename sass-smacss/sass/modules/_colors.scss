@@ -1,0 +1,37 @@
+/* Colors module
+============================================================
+========================================================= */
+
+/* Primary ---------------------------------------------- */
+$green:  #00D88C;
+$green0: #ccf7e8;
+$red:    #FF6565;
+$blue:   #4C73FF;
+$orange: #e67300;
+
+/* Grays ------------------------------------------------ */
+$gray5:      #3D3D3D;
+$gray4:      #656565;
+$gray3:      #868686;
+$gray2:      #BFBFBF;
+$gray1:      #F0F0F0;
+$gray0:      #FAFAFA;
+
+/* Tags ------------------------------------------------- */
+$tag_yellow: #FDE18D;
+$tag_cyan:   #7DD0FA;
+$tag_blue:   #58A6EC;
+
+/* Brands ----------------------------------------------- */
+$facebook:   #438acb;
+$twitter:    #5cbde9;
+
+/* Elements --------------------------------------------- */
+$body:       #fff;
+
+.red      { color: $red !important; }
+.blue     { color: $blue !important; }
+.orange   { color: $orange; }
+.gray2    { color: $gray2 !important; }
+.facebook { color: $facebook !important; }
+.green    { color: $green !important; }

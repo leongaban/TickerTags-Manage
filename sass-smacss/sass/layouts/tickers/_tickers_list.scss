@@ -1,0 +1,94 @@
+/* Choose Tickers List
+============================================================
+========================================================= */
+
+.search-tickers-popover {
+    display: none;
+    top: 400px;
+    margin-bottom: 50px;
+    width: 430px;
+    height: 300px;
+
+    .close-x-med    { top: -100px; left: -10px; }
+    .choose-tickers { position: relative; top: 7px; }
+    .search-tickers {
+        padding-left: 0;
+        background: #fff;
+        h2 {
+            margin-bottom: 5px;
+            padding: 0 0 10px 10px;
+            // padding-bottom: 10px;
+            font-family: 'robotolight';
+            font-size: em(12);
+            color: lighten($gray3, 10%);
+        }
+    }
+}
+
+.ticker-info {
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $gray2;
+    @include clearfix();
+    &:last-child { border: none; }
+}
+
+.ticker-symbol,
+.ticker-details { float: left; }
+
+.ticker-symbol {
+    float: left;
+    font-family: robotobold;
+    font-size: em(22);
+    color: $gray4;
+    cursor: pointer;
+
+    &:hover { color: $green; }
+}
+
+.ticker-details {
+    margin-left: 10px;
+    li:first-child { margin-bottom: 5px; font-family: robotolight; font-size: em(14); color: $gray3; }
+    li:last-child  { font-family: robotoregular; font-size: em(12); color: $gray2; }
+}
+
+.fuzzy-tickers,
+.fuzzy-tags {
+    width: 520px;
+    max-height: 280px;
+    min-height: 150px;
+    overflow-y: auto;
+    background: #fff;
+}
+
+.ticker-price { padding-right: 10px; font-size: em(13); text-align: right; }
+
+// Inside tagsDirective
+.fuzzy-tickers-modified  { position: relative; top: -45px; max-height: 345px; }
+.tickers-search-modified { position: relative; top: 35px; }
+
+// Inside of addTickersModalDirective
+.fuzzy-ticker-list {
+    overflow: auto;
+    position: absolute;
+    z-index: 13;
+    top: 150px;
+    left: 0;
+    padding: 20px;
+    width: 320px;
+    height: 240px;
+    background: white;
+
+    tr { border-bottom: 1px dashed lighten($gray2, 5%); }
+
+    td { padding-top: 10px; }
+
+    .ticker {
+        padding: 5px 8px;
+        @include transition(all, .3s, ease-out);
+        &:hover { background: $gray5; }
+    }
+}
+
+.result-company { width: 188px; }
+.result-price   { font-size: em(10); text-align: right; vertical-align: middle; }

@@ -1,0 +1,26 @@
+<div class="toggle-tables" ng-class="{ 'top126' : ttt.searchState }">
+	<p>Viewing:</p>
+	<section class="table-tabs">
+	    <ul>
+	        <li ng-click="ttt.toggleTables('all')"
+	            ng-class="{ 'active' : ttt.table == 'all'}"><span>All {{ ttt.totals.all }}</span>
+	        </li>
+	        <li ng-click="ttt.toggleTables('reports')"
+	        	ng-hide="ttt.searchState"
+	            ng-class="{ 'active' : ttt.table == 'reports'}"><span>Reported {{ ttt.totals.reports }}</span>
+	        </li>
+	        <li ng-click="ttt.toggleTables('event')"
+	        	ng-hide="ttt.searchState"
+	            ng-class="{ 'active' : ttt.table == 'event'}"><span>Event {{ ttt.totals.event }}</span>
+	        </li>
+	        <li ng-click="ttt.toggleTables('priority')"
+	        	ng-hide="ttt.searchState"
+	            ng-class="{ 'active' : ttt.table == 'priority'}"><span>Priority {{ ttt.totals.priority }}</span>
+	        </li>
+	        <li ng-click="ttt.toggleTables('deleted')"
+	        	ng-hide="ttt.searchState"
+	            ng-class="{ 'active' : ttt.table == 'deleted'}"><span>Deleted {{ ttt.totals.deleted }}</span>
+	        </li>
+	    </ul>
+	</section>
+</div>

@@ -1,0 +1,63 @@
+/* Modals - User
+============================================================
+========================================================= */
+
+// SVG
+.check-green {
+    float: left;
+    top: 8px;
+    width: 11px;
+    height: 8px;
+}
+
+// Main classes
+.user-modal {
+    margin-left: -390px !important;
+    width: 700px;
+
+    header { margin-bottom: 20px; border-bottom: 1px dotted $gray2; }
+
+    h1 { margin-bottom: 20px; }
+
+    label { position: relative; float: left; margin-top: -15px; font-size: em(13); }
+
+    input { margin-top: 5px; }
+    input#first-name,
+    input#last-name { float: left; margin-right: 15px; width: 140px; }
+
+    .label-group { float: left; margin: 10px 0; width: 100%; }
+
+    .checkbox-group {
+        float: left;
+        margin-bottom: 20px;
+        width: 100%;
+        font-size: em(11);
+    }
+
+    .chosen-tickers {
+        overflow-y: auto;
+        max-height: 200px;
+        li { margin: 3px 5px; }
+    }
+
+    .edit-category { margin-top: 5px; }
+
+    .search-tickers-popover { float: left; }
+
+    .close-x-dark { top: -10px; }
+
+    .btn-green-sm {
+        float: left;
+        margin-left: 15px;
+        &:first-child { margin-left: 0; }
+    }
+}
+
+.user-name          { color: $blue !important; }
+.user-modal-buttons { display: block; float: left; margin: 20px 0; width: 100%; }
+.user-modal-row     { float: left; margin-top: 10px; height: 50px; }
+.user-active-status { float: right; margin-top: 16px; }
+#userStatus         { float: left; width: 20px; }
+.select-tickers     { float: left; margin-top: 30px; width: 100%; min-height: 40px; }
+.temp-password      { float: left; width: 100%; margin-top: 4%; }
+.btn-remove         { float: right !important; padding: 7px 10px; }

@@ -1,0 +1,40 @@
+/* Tickers
+============================================================
+========================================================= */
+
+@import "_tickers_table";
+@import "_approve_tickers";
+@import "_tickers_list";
+
+.tickers-view { position: absolute; top: 10px; width: 100%; height: 100%; }
+
+.tickers-view-container {
+    height: auto;
+
+    .tag-search {
+        float: left;
+        position: relative;
+        input { width: 160px !important; }
+        .btn-green { float: right; margin-left: 10px; width: 115px; }
+    }
+}
+
+.tickers-body { @include clearfix(); }
+
+.tickers-body-header { float: left; width: 100%; }
+
+.quarterly-reports-view {
+    overflow: hidden;
+    position: relative;
+    top: 100px;
+
+    .container { overflow-x: auto; }
+}
+
+.reports-container { overflow-x: auto; }
+.quarterly-reports-invalid-period { border-color: $red; }
+.quarterly-reports-btn {
+	button { position: relative; top: -7px; }
+}
+
+.btn-export-tickers { margin: 6px 0 0 15px; }

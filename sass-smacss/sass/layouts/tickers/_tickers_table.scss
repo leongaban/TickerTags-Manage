@@ -1,0 +1,84 @@
+/* Tickers - Table
+============================================================
+========================================================= */
+
+.tickers-body {
+    margin-top: 80px;
+    @include clearfix();
+
+    .toggle-tables {  float: left; margin-top: 10px; }
+}
+
+.spin-container { position: absolute; top: 180px; left: 320px; }
+
+.my-tickers-table,
+.all-tickers-table { float: left; margin-top: 2px; font-size: em(13); }
+
+.tickers-rows {
+    margin-left: 0;
+    margin-top: 15px;
+    max-width: 80%;
+    min-width: 500px;
+
+    table {
+        float: left;
+        td { padding: 5px 12px; vertical-align: middle; }
+        tr { border-bottom: 1px dashed lighten($gray2, 5%); }
+    }
+
+    thead span { cursor: pointer; }
+
+    thead,
+    tbody { font-size: em(20); }
+
+    tbody {
+        tr {
+            &:hover,
+            &.alt:hover {
+                background: $gray0;
+                border-top:    1px solid lighten($gray2, 1%);
+                border-bottom: 1px solid lighten($gray2, 1%);
+            }
+        }
+    }
+}
+
+//thead
+.sort-trading { text-align: center; }
+
+.sort-ticker {
+    em {
+        position: relative;
+        top: -2px;
+        font-family: 'roboto_condensedlight';
+        font-size: em(10);
+    }
+}
+
+//tbody
+.td-trading { width: 30px; }
+
+.td-ticker {
+    min-width: 120px;
+    .ticker { margin-top: 6px; }
+}
+
+.td-ticker,
+.td-username,
+.td-update,
+.td-co-name { font-size: em(12); }
+
+.td-username {
+    span {
+        cursor: pointer;
+        &:hover { color: $green; }
+    }
+}
+
+.td-update { font-family: 'robotolight'; color: $gray3; }
+
+.td-export { width: 60px; }
+
+.icon-chart-line { color: $facebook; }
+
+.grayed { color: $gray2; }

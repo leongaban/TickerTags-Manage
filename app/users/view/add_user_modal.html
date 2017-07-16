@@ -1,0 +1,67 @@
+<section class="modal user-modal" ng-show="add_user.show">
+    <div class="close-x" ng-click="add_user.closeModal()"></div>
+    <header>
+        <h1>Add new user</h1>
+    </header>
+
+    <section class="user-modal-row">
+        <label for="firstName">First name:</label>
+        <input id="firstName" type="text" placeholder="First name" ng-model="add_user.userObject.firstname">
+    </section>
+
+    <section class="user-modal-row">
+        <label for="firstName">Last name:</label>
+        <input id="lastName"  type="text" placeholder="Last name"  ng-model="add_user.userObject.lastname">
+    </section>
+
+    <section class="user-modal-row">
+        <label for="userRole">User role:</label>
+        <div class="edit-category">
+            <select ng-model="add_user.userObject.role">
+                <option value="Admin">   Admin</option>
+                <option value="Intern">  Intern</option>
+                <option value="Curator"> Curator</option>
+                <option value="User">    User</option>
+                <option value="Retail">  Retail</option>
+                <option value="Pending"> Pending</option>
+            </select>
+        </div>
+    </section>
+
+    <section class="user-active-status">
+        <label for="userStatus">Active status:</label>
+        <input id="userStatus"
+               type="checkbox"
+               value="active"
+               ng-model="add_user.userObject.activeFlag"
+               ng-checked="add_user.userObject.active == 1"
+               name="userStatus" />
+    </section>
+
+    <section class="select-tickers">
+        <input type="text"
+               id="chooseTickerInput"
+               ng-model="add_user.chooseTickerInput"
+               placeholder="Choose tickers"
+               typeahead-wait-ms="500"
+               typeahead-min-length="1"
+               typeahead-wait-ms="500"
+               typeahead="search for search in add_user.userTickerSearch($viewValue)"
+               required>
+    </section>
+
+    <choose-ticker-list></choose-ticker-list>
+
+    <div class="chosen-tickers" ng-class="{ 'display-on' : add_user.choseTickersLoaded }">
+        <ul>
+            <li ng-repeat="ticker in add_user.userObject.user_tickers">
+                <span ng-click="add_user.removeTicker(ticker)">{{ ticker.ticker }} <div class="small-white-x"></div></span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="user-modal-buttons">
+        <div class="btn-green-sm" ng-click="add_user.updateUser()">Save</div>
+        <div class="btn-green-sm" ng-click="add_user.passwordReset()">Password Reset</div>
+    </div>
+</section>

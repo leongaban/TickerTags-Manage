@@ -1,0 +1,86 @@
+/* Modals - Edit Tag
+============================================================
+========================================================= */
+
+.edit-tag-modal {
+    margin-left: -370px !important;
+    width: 740px;
+
+    header { margin-bottom: 15px; height: 90px; border-bottom: 1px dotted $gray2; }
+    input  { float: left; margin-right: 15px; }
+
+    .edit-category { float: left; }
+    .btn-green-sm  { float: left; }
+}
+
+.global-warning {
+    position: absolute;
+    top: 18px;
+    left: 316px;
+    color: $red;
+}
+
+.label-global { float: left; margin: 7px; font-size: em(13); }
+
+.tag-details {
+    margin-top: 55px;
+    height: 40px;
+    font-size: em(10);
+    
+    table {
+        width: auto;
+        td { padding: 3px 12px; vertical-align: middle; }
+        tr { border-bottom: 1px dotted $gray0; }
+    }
+}
+
+.exact-btn-match-container { float: left; margin-right: 15px; }
+
+.tag-chart {
+    margin-bottom: 15px;
+    img { width: auto; }
+}
+
+.tag-modal-details,
+.tag-modal-tickers {
+    width: 100%;
+    @include clearfix();
+}
+
+.tag-modal-details {
+    a { color: $green; }
+}
+
+.tag-modal-tickers {
+    overflow-x: auto;
+    padding-top: 10px;
+    max-height: 300px;
+
+    a {
+        color: #fff;
+        &:hover { text-decoration: none; }
+    }
+
+    li { float: left; margin-right: 2px; }
+
+    .ticker { float: none; padding: 3px; font-size: em(11) }
+}
+
+.tag-news,
+.tag-tweets {
+    overflow: auto;
+    width: 355px;
+    height: 286px;
+    font-size: em(12);
+    line-height: 16px;
+}
+
+.tag-news   { float: left; padding: 0 10px 0 0; }
+.tag-tweets { float: right; }
+
+.news,
+.tweet {
+    margin-bottom: 15px;
+    cursor: pointer;
+    .timeago { font-size: em(10); }
+}

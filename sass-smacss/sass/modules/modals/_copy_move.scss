@@ -1,0 +1,31 @@
+/* Modals - Copy & Move Tags
+============================================================
+========================================================= */
+
+.copy-move-tag-modal {
+    width: 520px;
+
+    header {
+        float: left;
+        margin-top: -20px;
+        margin-bottom: 15px;
+        width: 100%;
+        @include clearfix();
+    }
+
+    .btn-green-sm {
+        float: right;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+.selected-tags {
+    font-size: em(10);
+    @include clearfix();
+    li {
+        float: left;
+        margin: 0 10px 5px 0;
+    }
+}

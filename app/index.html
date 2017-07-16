@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>TickerTags Admin app</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="TickerTags Admin App 2.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css'>
+    <!-- build:css -->
+    <link rel="stylesheet" href="assets/css/admin.css"/>
+    <!-- endbuild -->
+    <link rel="author" href="TickerTags.com"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+
+<body ng-app="admin" ng-controller="IndexCtrl as index" ng-class="{ 'pos-fixed' : index.fixed }">
+
+    <div ui-view></div>
+
+    <!-- build:vendors -->
+    <script type="text/javascript" src="assets/js/libs/vendors.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:bundle -->
+    <script type="text/javascript" src="assets/js/admin.app.js"></script>
+    <!-- endbuild -->
+</body>
+</html>

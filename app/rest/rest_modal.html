@@ -1,0 +1,42 @@
+<section class="modal rest-modal" ng-show="rest_modal.show">
+    <div class="close-x" ng-click="rest_modal.closeModal()"></div>
+
+    <section class="rest-modal-row">
+        <label for="method">Method:</label>
+        <div class="input-container">
+            <input id="method" type="text" placeholder="rest_modal.api.method" ng-model="rest_modal.api.method">
+        </div>
+    </section>
+
+    <section class="rest-modal-row">
+        <label for="resource">Resource:</label>
+        <div class="input-container">
+            <input id="resource" type="text" placeholder="rest_modal.api.resource" ng-model="rest_modal.api.resource">
+        </div>
+    </section>
+
+    <section class="rest-modal-row">
+        <label for="description">Description:</label>
+        <div class="input-container">
+            <input id="description" type="text" placeholder="rest_modal.api.description" ng-model="rest_modal.api.description">
+        </div>
+    </section>
+
+    <section class="rest-modal-row">
+        <label for="input">Input:</label>
+        <div class="input-container">
+            <textarea cols="60" rows="10" id="input" type="text" ng-model="rest_modal.api.example_input"></textarea>
+        </div>
+    </section>
+
+    <section class="rest-modal-row">
+        <label for="output">Output:</label>
+        <div class="input-container">
+            <textarea cols="60" rows="10" id="output" type="text" ng-model="rest_modal.api.example_output"></textarea>
+        </div>
+    </section>
+
+    <!-- <div class="user-modal-buttons">
+        <div class="btn-green-sm" ng-click="rest_modal.saveMethod()">Save</div>
+    </div> -->
+</section>

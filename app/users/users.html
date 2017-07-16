@@ -1,0 +1,62 @@
+<div class="view users-view">
+    <div class="container users-view-container">
+        <header class="users-header">
+            <section class="header-top">
+                <h1>Users</h1>
+                <h3 ng-hide="usrs.hidePagination">(<span ng-bind="usrs.totalUsers"></span>)</h3>
+                <button class="btn-green" ng-click="usrs.openAddUserModal()" tabindex="1">Add User</button>
+                <form ng-submit="usrs.searchUsers()">
+                    <input class="user-search-input" type="text" ng-model="usrs.userSearch" placeholder="Search Users" tabindex="2">
+                    <button class="btn-green" ng-click="usrs.searchUsers()" tabindex="3">Search</button>
+                </form>
+            </section>
+            <nav class="pagination loading-pages" ng-show="usrs.hidePagination">
+                <p><div class="icon-spin5 animate-spin"></div> Loading pagination...</p>
+            </nav>
+            <nav class="pagination" ng-hide="usrs.hidePagination">
+                <ul>
+                    <li ng-repeat="page in usrs.pages" ng-class="{ 'active' : page == usrs.currentPage }">
+                        <button class="btn-page" ng-click="usrs.gotoPage(page)">{{ :: page }}</button>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <section class="users-body-container">
+            <div ng-hide="usrs.usersLoaded" class="loading-spinner">
+                <div class="icon-spin5 animate-spin"></div>
+            </div>
+
+            <div class="users-body" ng-show="usrs.usersLoaded">
+                <table class="users-table view-table">
+                    <thead class="users-thead">
+                        <tr>
+                            <td class="sort-name"  ng-click="predicate = 'firstname'; reverse=!reverse;">Name</td>
+                            <td class="sort-email" ng-click="predicate = 'username';  reverse=!reverse;">Email</td>
+                            <td class="sort-login" ng-click="predicate = 'session.formatted_date'; reverse=!reverse;">Login</td>
+                            <td class="sort-role"  ng-click="predicate = 'role_id'; reverse=!reverse;">Role</td>
+                            <td>Remove</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="u in usrs.usersList | orderBy:predicate:reverse track by $index">
+                            <td class="td-name">
+                                <span ng-click="usrs.openUserModal(u)">{{ u.firstname }} {{ u.lastname }}</span>
+                            </td>
+                            <td class="sort-email">
+                                <span ng-click="usrs.openUserModal(u)">{{ u.username }}</span>
+                            </td>
+                            <td class="sort-login">
+                                {{ u.session.formatted_date }}
+                            </td>
+                            <td class="sort-role">
+                                {{ u.role }}
+                            </td>
+                            <td><button class="btn-green-sm" ng-click="usrs.removeUser(u)">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>

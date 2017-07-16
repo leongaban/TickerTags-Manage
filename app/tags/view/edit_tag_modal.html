@@ -1,0 +1,111 @@
+<div>
+    <section class="admin-modal edit-tag-modal">
+        <div class="close-x" ng-click="etm.cancel()"></div>
+
+        <header>
+            <h1>Edit Tag</h1>
+
+            <div class="fl" ng-show="etm.saving">
+                <span class="icon-spin5 animate-spin animate"></span>
+                {{ etm.tagStatus }} Tag, please wait while backend is processing for every Ticker...
+            </div>
+
+            <div class="exact-btn-match-container" ng-class="{ 'op5' : etm.saving }">
+                <button class="btn-util" ng-click="etm.exactMatch(etm.tag.term)">Exact match</button>
+            </div>
+
+            <div ng-class="{ 'op5' : etm.saving }">
+                <form ng-submit="etm.updateTag(etm.tag)">
+                    <input type="text" class="w200" value="etm.tag.term" ng-model="etm.tag.term" ng-change="etm.changeTerm()">
+
+                    <div class="edit-category">
+                        <select ng-init="etm.tag.tag" ng-model="etm.tag.tag" ng-change="etm.changeCategory()">
+                            <option value="brand">Brand</option>
+                            <option value="client">Client</option>
+                            <option value="cashtag">Cashtag</option>
+                            <option value="competitor-name">Competitor Name</option>
+                            <option value="company-name">Company Name</option>
+                            <option value="government">Government / Regulation</option>
+                            <option value="events">Events</option>
+                            <option value="industry">Industry</option>
+                            <option value="news">News</option>
+                            <option value="people">People</option>
+                            <option value="philanthropic">Philanthropic</option>
+                            <option value="place">Place</option>
+                            <option value="products">Products</option>
+                            <option value="product-category">Product Category</option>
+                            <option value="product-competing">Product (competing)</option>
+                            <option value="product-feature">Product Feature</option>
+                            <option value="problem">Problem</option>
+                            <option value="related-company-name">Related Company Name</option>
+                            <option value="subsidiary">Subsidiary</option>
+                            <option value="trend">Trend</option>
+                            <option value="event">Event</option>
+                        </select>
+                    </div>
+
+                    <label for="" class="label-global">Global:</label>
+                    <input type="checkbox" class="mt7" ng-model="etm.allTickers" ng-change="etm.checkGlobal()">
+
+                    <button class="btn-green-sm" type="submit" ng-class="{ 'btn-grayed' : !etm.canSave }" ng-disabled="!etm.canSave">Save</button>
+                </form>
+            </div>
+            
+            <button class="btn-green-sm fr"
+                    ng-class="{ 'btn-grayed' : !etm.canDelete, 'op5' : etm.saving }"
+                    ng-disabled="!etm.canDelete"
+                    ng-click="etm.deleteTag(etm.tag)">Delete</button>
+
+            <section class="tag-details" ng-class="{ 'op5' : etm.saving }">
+                <table>
+                    <tr>
+                        <!-- <td><span class="gray2">1w vol:</span>{{ :: etm.tag.vol }}</td> -->
+                        <td><span class="mr5 gray2">Added by:</span>{{ :: etm.tag.user }}</td>
+                        <td><span class="mr5 gray2">Date:</span>{{ etm.tag.added_epoch | fromTimestamp:'MMM Do YYYY'}}</td>
+                        <td>
+                            <span class="mr5 gray2">Status:</span>
+                            <span ng-show="etm.tag.active == 1">Active</span>
+                            <span ng-show="etm.tag.active == 0">Inactive</span>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        </header>
+
+        <div class="tag-modal-details" ng-class="{ 'op5' : etm.saving }">
+            <!-- <div class="tag-chart">
+                <img src="http://placehold.it/740x150?text=Chart coming soon!">
+            </div> -->
+            <div class="tag-news" cg-busy="etm.newsPromise">
+                <div class="news" ng-repeat="n in etm.news track by $index">
+                    <p>{{ n.title }}</p>
+                    <span class="domain"><a href="{{n.url}}" target="_blank">{{ n.domain }}</a></span>
+                    <div class="timeago">{{ n.formatted_date }}</div>
+                </div>
+                <div>{{ etm.noNews }}</div>
+            </div>
+            <div class="tag-tweets" cg-busy="etm.tweetsPromise">
+                <div class="tweet" ng-repeat="t in etm.tweets track by $index">
+                    <a href="https://twitter.com/FlyerTalk/status/{{t.id}}" target="_blank">
+                        <p ng-bind-html="t.text"></p>
+                    </a>
+                    <div class="timeago">{{ t.formatted_date_difference }}</div>
+                </div>
+                <div>{{ etm.noTweets }}</div>
+            </div>
+        </div>
+
+        <div class="tag-modal-tickers" ng-class="{ 'op5' : etm.saving }">
+            <ul>
+                <li ng-repeat="ticker in etm.tickers">
+                    <input type="checkbox" class="fl mr5" value="" id="" name="ticker" ng-model="ticker.checked" ng-change="etm.checkTicker()"/>
+                    <div class="ticker" ng-click="etm.selectTicker(ticker.ticker)">
+                        {{ ticker.ticker }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="overlay" ng-click="etm.cancel()"></div>
+</div>

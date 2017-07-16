@@ -1,0 +1,23 @@
+/* Rest
+============================================================
+========================================================= */
+
+.rest-modal {
+    width: 520px;
+    input { width: 400px; }
+}
+
+.rest-textarea {
+    float: left;
+    margin: 10px 0;
+    width: 100%;
+
+    label { font-size: em(13); color: $gray3; }
+
+    textarea {
+        margin-top: 5px;
+        font-size: em(13);
+        color: $orange;
+        border-color: $facebook;
+    }
+}

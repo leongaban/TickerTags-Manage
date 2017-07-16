@@ -1,0 +1,58 @@
+<div>
+    <section class="admin-modal add-tag-modal" ng-class="{ 'height-490' : atm.heightTall }">
+        <div class="close-x" ng-click="atm.cancel()"></div>
+        <header>
+            <h1>Add Tag <span title='term +withthis -withoutthis +"withexactlythis"'>(You can also use + or - and "")</span></h1>
+            <input type="text" placeholder="Term" ng-model="atm.newTerm">
+            <div class="edit-category">
+                <select ng-model="atm.newCategory">
+                    <option value="brand">Brand</option>
+                    <option value="client">Client</option>
+                    <option value="cashtag">Cashtag</option>
+                    <option value="competitor-name">Competitor Name</option>
+                    <option value="company-name">Company Name</option>
+                    <option value="government">Government / Regulation</option>
+                    <option value="events">Events</option>
+                    <option value="industry">Industry</option>
+                    <option value="news">News</option>
+                    <option value="people">People</option>
+                    <option value="philanthropic">Philanthropic</option>
+                    <option value="place">Place</option>
+                    <option value="products">Products</option>
+                    <option value="product-category">Product Category</option>
+                    <option value="product-competing">Product (competing)</option>
+                    <option value="product-feature">Product Feature</option>
+                    <option value="problem">Problem</option>
+                    <option value="related-company-name">Related Company Name</option>
+                    <option value="subsidiary">Subsidiary</option>
+                    <option value="trend">Trend</option>
+                    <option value="event">Event</option>
+                </select>
+            </div>
+            <a href="https://www.tickertags.com/help.html#tag-help" title="Learn more about tags" target="_blank">
+                <div class="icon-help-circled"></div>
+            </a>
+            <div class="btn-green-sm" tabindex="4" ng-click="atm.clickedAddTag()">Add</div>
+        </header>
+
+        <section class="select-tickers">
+            <input id="chooseTickerInput" type="text" placeholder="Choose tickers"
+                   ng-model="atm.chooseTickerInput" ng-change="atm.tickerSearch(atm.chooseTickerInput)"
+                   typeahead-wait-ms="500" typeahead-min-length="1" typeahead-wait-ms="500"
+                   required>
+        </section>
+
+        <choose-ticker-list on-add="atm.register(child)" on-select="atm.selectTicker(ticker)">
+            <!-- on-typing="ct.tickerTyping(ticker)"> -->
+        </choose-ticker-list>
+
+        <div class="chosen-tickers">
+            <ul>
+                <li ng-repeat="ticker in atm.chosenTickers">
+                    <span ng-click="atm.removeTicker(ticker)">{{ ticker.ticker }} <div class="small-white-x"></div></span>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <div class="overlay" ng-click="atm.cancel()"></div>
+</div>

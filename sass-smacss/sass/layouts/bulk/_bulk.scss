@@ -1,0 +1,68 @@
+/* Bulk Add
+============================================================
+========================================================= */
+
+.bulk-add-view { top: 80px; }
+
+.bulk-add-view-container {
+    .chosen-tickers { margin-top: 10px; }
+}
+
+.bulk-header {
+    float: left;
+    width: 660px !important;
+    
+    h1 { margin-top: 30px; margin-bottom: 15px; }
+
+    select {
+        padding: 4px 8px;
+        width: 215px;
+        height: 35px;
+        border: 1px solid $green;
+        @include rounded(4px);
+    }
+
+    // Choose Tickers list
+    .search-tickers-popover { position: absolute; top: 80px; left: 110px; }
+
+    .fuzzy-tickers { padding-left: 10px ;width: 440px; }
+
+    .close-x-dark { position: absolute; top: -75px; right: -18px; }
+
+    .ticker-search { margin-left: 0; }
+
+    .btn-green {
+        float: right;
+        width: 120px;
+        height: 10px;
+        padding: 7px 10px 24px;
+    }
+}
+
+.event-priority {
+    float: left;
+    margin-left: 10px;
+    padding: 5px;
+    width: 64px;
+    font-size: em(11);
+
+    p, input {
+        float: left;
+    }
+
+    p {
+        margin-right: 10px;
+    }
+}
+
+.bulk-body {
+    float: left;
+    margin-top: 7px;
+    width: 100%;
+    textarea {
+        padding: 10px;
+        width: 640px;
+        border: 1px solid $gray2;
+        @include rounded(4px);
+    }
+}

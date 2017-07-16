@@ -1,0 +1,39 @@
+/*  SVG background images
+============================================================
+========================================================= */
+
+.tickertags-logo,
+.close-x,
+.close-x-dark,
+.small-x,
+.small-white-x,
+.check-green {
+    position: relative;
+    background-size: 640px 640px;
+    background-image: url(../imgs/manage2.svg), none;
+}
+
+.small-x,
+.small-white-x {
+    float: right;
+    margin: 2px 0 0 5px;
+    width: 8px;
+    height: 8px;
+}
+
+.small-x { background-position: -56px -88px; }
+
+.small-white-x { background-position: -56px -105px; }
+
+.check-green { background-position: -94px -137px; }
+
+.close-x-dark {
+    z-index: 14;
+    position: relative;
+    top: 7px;
+    float: right;
+    width: 23px;
+    height: 22px;
+    background-position: -49px -130px;
+    cursor: pointer;
+}

@@ -1,0 +1,27 @@
+<div ng-class="{ 'display-on' : ct.addTickersShowing }" class="search-tickers-popover">
+    <section class="search-tickers" ng-class="{ 'tickers-search-modified' : ct.searchTickers }">
+
+        <div ng-show="ct.onTickers" class="close-x-dark" ng-click="ct.closeThis()"></div>
+        
+        <h2 ng-class="{ 'display-off' : ct.searchTickers }" class="choose-tickers"
+            ng-show="ct.tickersListLoaded">Choose all tickers to add tag to</h2>
+
+        <h2 ng-class="{ 'display-off' : ct.searchTickers }"
+            ng-show="ct.noTickers">No tickers</h2>
+
+        <div class="fuzzy-tickers" ng-class="{ 'fuzzy-tickers-modified' : ct.searchTickers }">
+            <span ng-hide="ct.tickersListLoaded" class="icon-spin5 animate-spin"></span>
+            <section class="ticker-info" ng-repeat="t in ct.tickersList">
+                <div class="tag-container">
+                    <div class="ticker-symbol" ng-click="ct.selectTicker(t)">{{ :: t.ticker}}</div>
+                </div>
+
+                <div class="ticker-details">
+                    <ul><li>{{t.longname}}</li><li>{{t.exchange}}</li></ul>
+                </div>
+
+                <div class="ticker-price">${{ :: t.current_ask }}</div>
+            </section>
+        </div>
+    </section>
+</div>

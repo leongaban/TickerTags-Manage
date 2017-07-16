@@ -1,0 +1,57 @@
+.analytics { top: 80px; }
+
+.analytics-header { margin-bottom: 20px; }
+
+.analytics-table {
+	table { margin-bottom: 20px; }
+	td { padding: 10px; }
+	thead {
+		tr { border-bottom: 1px solid $gray2; }
+		td { font-size: em(12); }
+		span {
+			float: left;
+			margin-top: 5px;
+			width: 100%;
+			font-size: em(10);
+		}
+	}
+	input { width: 100px; font-size: em(12); }
+}
+
+.analytics-ticker {
+	input { width: 60px !important; }
+	em { font-size: em(12); color: $gray3; }
+}
+
+.analytics-kpi {
+	p { float: left; }
+    select {
+      font-family: 'robotoregular', Arial, sans-serif;
+      font-size: em(12);
+    }
+}
+.analytics-btn { width: 180px; }
+
+.analytics-config-result {
+  padding: 10px 10px 10px 10px;
+  background-color: black;
+  position: absolute;
+  overflow-y: auto;
+  display: block;
+  font-family: 'robotoregular', Arial, sans-serif;
+  font-size: em(12);
+
+  strong {
+    color: $green !important;
+  }
+  a {
+    color: whitesmoke;
+  }
+}
+.report-row {
+  @include transition(background, .5s, ease-out);
+  cursor: pointer;
+  &:hover{
+    background: $gray1;
+  }
+}

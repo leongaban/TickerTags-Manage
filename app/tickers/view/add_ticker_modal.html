@@ -1,0 +1,62 @@
+<div>
+  <section class="admin-modal add-ticker-modal">
+      <div class="close-x" ng-click="atkm.$close()"></div>
+
+      <section class="ticker-action">
+          <form ng-submit="atkm.submitNewTicker(atkm.newTicker.name, atkm.newTicker.company, atkm.newTicker.admin)">
+              <h1>Add Ticker</h1>
+              <input id="ticker-to-add" type="text" placeholder="Ticker" class="ticker-input"
+                     ng-focus="atkm.pullUsersFindAdmins()"
+                     ng-model="atkm.newTicker.name" capitalize>
+              <input type="text" placeholder="Company name"
+                     ng-model="atkm.newTicker.company">
+              <input type="text" placeholder="Admin" class="admin-input"
+                     ng-focus="atkm.displayAdminsList()"
+                     ng-model="atkm.newTicker.admin">
+              <section class="admins-list" ng-show="atkm.showAdminList">
+                  <ul>
+                      <li ng-repeat="admin in atkm.theAdmins" ng-click="atkm.selectAdmin(admin)">
+                          {{ admin.firstname }} {{ admin.lastname }}
+                      </li>
+                  </ul>
+              </section>
+              <button type="submit" class="btn-green-sm normargin" >Add</button>
+          </form>
+      </section>
+
+      <div ng-show="atkm.tickersListLoaded" class="close-x-dark" ng-click="atkm.closeFuzzySearch()"></div>
+      <div class="fuzzy-ticker-list" ng-show="atkm.tickersListLoaded">
+          <table>
+              <tr ng-repeat="result in atkm.searchedTickers">
+                  <td class="result-ticker">
+                      <div class="ticker" ng-click="atkm.sendToRemoveInput(result.ticker)">{{ :: result.ticker }}</div>
+                  </td>
+                  <td class="result-company">{{ :: result.longname }}</td>
+                  <td class="result-price">${{ :: result.current_ask }}</td>
+              </tr>
+          </table>
+      </div>
+
+      <section class="ticker-action">
+          <h1>Remove Ticker</h1>
+          <input id="searchTickersRemove" class="ticker-input" type="text" placeholder="Ticker"
+                 ng-focus="atkm.hideAdminList()"
+                 ng-model="atkm.tickerToRemove"
+                 ng-change="atkm.returnTickersToRemove(atkm.tickerToRemove)">
+          <div class="btn-green-sm" ng-click="atkm.removeTicker(atkm.tickerToRemove)">Remove</div>
+      </section>
+
+      <section class="ticker-action">
+          <h1>Transfer tags</h1>
+          <h2>(remove old ticker and add new ticker first)</h2>
+          <input type="text" class="ticker-input" placeholder="Inactive ticker"
+                 ng-focus="atkm.hideAdminList()"
+                 ng-model="atkm.transferFrom" capitalize>
+          <input type="text" class="ticker-input" placeholder="Active ticker"
+                 ng-focus="atkm.hideAdminList()"
+                 ng-model="atkm.transferTo"   capitalize>
+          <div class="btn-green-sm" ng-click="atkm.transferTickers(atkm.transferFrom, atkm.transferTo)">Transfer</div>
+      </section>
+  </section>
+  <div class="overlay" ng-click="atkm.$close()"></div>
+</div>

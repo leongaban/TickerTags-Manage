@@ -1,0 +1,70 @@
+<div class="view tickers-view">
+    <div class="container tickers-view-container">
+        <section class="tickers-body">
+            <div class="tickers-body-header">
+                <div class="approve-header">Tickers to review</div>
+                <div class="toggle-tables">
+                    <span class="my-tickers-table" ng-class="{'off' : tkrs.myTickers.type === 'all'}">My Tickers</span>
+                    <div  ng-click="tkrs.toggleTables()"
+                          ng-class="{'icon-toggle-off' : tkrs.myTickers.type === 'mine', 'icon-toggle-on' : tkrs.myTickers.type === 'all'}"></div>
+                    <span class="all-tickers-table" ng-class="{'off' : tkrs.myTickers.type === 'mine'}">All Tickers</span>
+                </div>
+                <div>
+                    <button type="button" class="btn-green-sm btn-export-tickers" ng-csv="tkrs.myTickers.tickers">Export my Tickers</button>
+                </div>
+            </div>
+
+            <section class="approve-tickers">
+                <div class="ticker-to-approve" ng-repeat="ticker in tkrs.reviewTickers">
+                    <div class="ticker">
+                        <a ng-click="tkrs.selectTicker(ticker.ticker)" ng-bind="ticker.ticker"></a>
+                        <!-- <a href="#/tags?ticker={{ticker.ticker}}">{{ ticker.ticker }}</a> -->
+                    </div>
+                    <div class="btn-red-sm"   ng-click="tkrs.reviewTicker('remove', ticker)">Remove</div>
+                    <div class="btn-green-sm" ng-click="tkrs.reviewTicker('approve', ticker)">Approve</div>
+                </div>
+            </section>
+
+            <div class="spin-container animate" ng-hide="tkrs.tableLoaded">
+                <div class="icon-spin5 animate-spin animate"></div>
+                Loading Tickers
+            </div>
+
+            <section class="tickers-rows" ng-show="tkrs.tableLoaded">
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="sort-trading"  ng-click="predicate = 'trading'; reverse=!reverse;">        <span>Trading</span></td>
+                            <td class="sort-ticker"   ng-click="predicate = 'ticker'; reverse=!reverse;">         <span>Tickers <em>({{tkrs.myTickers.total}})</em></span></td>
+                            <td class="sort-co-name"  ng-click="predicate = 'company_name'; reverse=!reverse;">   <span>Company name</span></td>
+                            <td class="sort-username" ng-click="predicate = 'username'; reverse=!reverse;">       <span>Username</span></td>
+                            <td class="sort-update"   ng-click="predicate = 'formatted_date'; reverse=!reverse;"> <span>Last Update</span></td>
+                            <td class="sort-reports"  ng-click="predicate = 'reports'; reverse=!reverse;" ng-hide="tkrs.showingAllTickers"> <span>Reported Tags</span></td>
+                            <td class="sort-export">  Export</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="ticker in tkrs.myTickers.tickers | orderBy:predicate:reverse track by $index">
+                            <td class="td-trading">  <div class="icon-chart-line" ng-class="{'grayed' : ticker.trading == 0}"></div> </td>
+                            <td class="td-ticker">
+                                <div class="ticker">
+                                    <a ng-click="tkrs.selectTicker(ticker.ticker)" tabindex="5">{{ ticker.ticker }}</a>
+                                    <!-- <a href="#/tags?ticker={{ticker.ticker}}" tabindex="5">{{ ticker.ticker }}</a> -->
+                                </div>
+                            </td>
+                            <td class="td-co-name">{{ ticker.company_name }}</td>
+                            <td class="td-username"><span ng-click="tkrs.openUserModal(ticker)">{{ ticker.username }}</span></td>
+                            <td class="td-update">{{ ticker.formatted_date }}</td>
+                            <td class="td-update" ng-hide="tkrs.showingAllTickers" ng-class="{ 'red' : ticker.reports != 0, 'bold' : ticker.reports != 0 }">{{ tkrs.reports[ticker.ticker] }}</td>
+                            <td class="td-export">
+                                <div ng-csv="tkrs.exportCSV(ticker.ticker)"
+                                     filename="{{ticker.ticker}}-{{tkrs.myTickers.date | date:'yyyy-MM-dd'}}.csv"
+                                     quote-strings="true" class="btn-green-sm">Export</div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </div>
+</div>

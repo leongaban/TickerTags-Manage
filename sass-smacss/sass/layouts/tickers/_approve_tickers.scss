@@ -1,0 +1,52 @@
+/* Tickers - Approve Tickers
+============================================================
+========================================================= */
+
+.approve-header {
+    float: left;
+    margin: 10px 20px 0 0;
+    width: 240px;
+}
+
+.approve-tickers {
+    float: left;
+    margin: 20px 40px 0 0;
+    padding-top: 10px;
+    width: 240px;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    ::selection { background: transparent; }
+    ::-moz-selection { background: transparent; }
+
+    .ticker {
+        cursor: pointer;
+        @include transition(all, .3s, ease-out);
+        &:hover { background: $gray5; }
+    }
+
+    a {
+        color: #fff;
+        &:hover { text-decoration: none; }
+        &:focus { color: $gray5; }
+    }
+
+    .btn-green-sm,
+    .btn-red-sm {
+        float: right;
+        padding: 4px 5px;
+        height: 14px;
+    }
+
+    .btn-red-sm { margin-left: 10px; }
+}
+
+.ticker-to-approve {
+    float: left;
+    padding: 10px 5px 0 5px;
+    width: 100%;
+    border-bottom: 1px solid lighten($gray2, 10%);
+    &:hover { background: $gray0; }
+}

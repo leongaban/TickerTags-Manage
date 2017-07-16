@@ -1,0 +1,98 @@
+/* Tags
+============================================================
+========================================================= */
+
+// Import button tag styles:
+@import "_add_tag";
+@import "_tags_header";
+@import "_tags_table";
+@import "_tags_search";
+
+.tags-view {
+    overflow: hidden;
+    position: relative;
+    top: 165px;
+}
+
+.bulk-terms-view {
+    overflow: hidden;
+    position: relative;
+    top: 100px;
+
+    .container {
+        overflow-x: auto;
+    }
+}
+
+.bulk-terms-btn {
+	button { position: relative; top: -7px; }
+}
+
+.tags-view-container {
+    height: 100%;
+    header { margin-top: 0; }
+
+    .ticker-header {
+        top: 100px;
+        padding: 10px;
+        left: 0;
+    }
+
+    .ticker-search {
+        width: 123px;
+        input { float: left; }
+    }
+
+    .loading-spinner {
+        position: relative;
+        top: 50px !important;
+        padding-bottom: 50px;
+
+        .icon-spin5 { float: left; }
+
+        p { float: left; margin-left: 5px; font-size: em(14); }
+    }
+
+    .close-x-dark {
+        top: 20px;
+        right: -55px;
+    }
+}
+
+.tags-body {
+    margin-top: 30px;
+    @include clearfix();
+}
+
+.reported-tags-view {
+    header h1  { margin-top: 10px; }
+    .tags-body { margin-top: 15px; }
+    .tag-rows  { margin-top: -30px; }
+}
+
+// This class is used only on the tags view
+/* .ticker-news {
+    float: left;
+    overflow: auto;
+    margin-top: 15px;
+    width: 160px;
+    height: 600px;
+
+    h1 { margin-bottom: 15px; }
+}
+
+.news-header { margin-right: 20px; width: 200px; }
+
+.news-box {
+    margin-bottom: 15px;
+    font-family: 'robotolight';
+    font-size: em(11);
+    line-height: 16px;
+    color: $gray3;
+
+    a {
+        font-family: 'robotobold';
+        color: $gray5;
+        &:hover { text-decoration: underline; }
+    }
+} */

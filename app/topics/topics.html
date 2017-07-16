@@ -1,0 +1,63 @@
+<div class="view topics-view">
+
+    <div class="container">
+        <header class="topics-view-header">
+            <h1>Pick date: {{ _topics.valuationDate | date: 'fullDate' }}</h1>
+        </header>
+
+        <section class="date-picker-section">
+            <div style="display:inline-block; min-height:290px;">
+                <uib-datepicker is-open="true" ng-model="_topics.valuationDate" class="well"
+                     datepicker-options="_topics.dateOptions"></uib-datepicker>
+            </div>
+        </section>
+
+        <div ng-if="!_topics.topicsLoaded" class="loading-spinner">
+            <div class="icon-spin5 animate-spin"></div>
+            <p>Loading topics, please wait...</p>
+        </div>
+
+        <section ng-if="_topics.topicsLoaded" class="topics-loaded">
+            <div ng-if="_topics.ticker">
+                <h1>Topics:</h1>
+                <div class="ticker">
+                    {{ _topics.ticker }}
+                </div>
+                <div class="close-x-dark" ng-click="_topics.getTopics(undefined, _topics.valuationDate)"></div>
+            </div>
+
+            <ul class="terms-container">
+                <li ng-repeat="topic in _topics.topics" class="well">
+                    <section class="term-names">
+                        <span class="term-name btn-clear" ng-repeat="term in topic.terms">{{ :: term.term }}</span>
+                    </section>
+
+                    <section class="topics-tickers">
+                        <ul>
+                            <li ng-repeat="ticker in topic.tickers" ng-hide="ticker.score == undefined">
+                                <span>{{ ticker.score }}</span>
+                                <div class="ticker" ng-click="_topics.getTopics(ticker.ticker, _topics.valuationDate, ticker)">
+                                    {{ ticker.ticker }}
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="annotations">
+                        <form novalidate ng-submit="_topics.save(topic)">
+                            <ul>
+                                <li ng-repeat="(annotation, value) in topic.annotations">
+                                    <input title="" type="checkbox" ng-model="topic.annotations[annotation]" ng-change="_topics.update(topic.annotations, annotation)" ng-checked="{{value}}">
+                                    <span>{{ annotation }}</span>
+                                </li>
+                                <li>
+                                    <button type="submit" class="btn-green-sm"> Save</button>
+                                </li>
+                            </ul>
+
+                        </form>
+                    </section>
+                <li>
+            </ul>
+        </section>
+    </div>
+</div>

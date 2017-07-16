@@ -1,0 +1,74 @@
+/* Modals - Add Tickers
+============================================================
+========================================================= */
+
+.add-ticker-modal {
+    position: fixed !important;
+    margin-left: -250px !important;
+    width: 500px;
+
+    input,
+    .btn-green-sm { float: left; margin-right: 15px; }
+    .btn-green-sm { position: relative; }
+    .close-x-dark { top: 27px; right: 159px; }
+}
+
+.result-ticker { width: 80px; }
+
+.result-company { padding-bottom: 5px; font-size: em(10); vertical-align: middle; }
+
+.ticker-action {
+    margin-bottom: 20px;
+    height: 55px;
+    h1 { margin-bottom: 8px !important; }
+    h2 { margin-bottom: 8px; font-family: 'robotolight'; font-size: em(12); color: lighten($gray3, 10%); }
+}
+
+.select-tickers {
+    width: 100%;
+    height: 40px;
+    @include clearfix();
+
+    input { float: left; margin-right: 15px; width: 100px; }
+}
+
+.admin-input { width: 125px; }
+
+.admins-list {
+    z-index: 11;
+    position: absolute;
+    right: 95px;
+    top: 71px;
+    padding: 7px 10px;
+    background: $gray1;
+
+    li {
+        margin-bottom: 7px;
+        font-size: em(12);
+        cursor: pointer;
+        &:hover { color: $blue; }
+        &:last-child { margin-bottom: 0; }
+    }
+}
+
+input.ticker-input { width: 90px; }
+
+.chosen-tickers {
+    float: left;
+    position: relative;
+    width: 100%;
+
+    li { float: left; margin-right: 5px; }
+
+    span {
+        float: left;
+        padding: 4px 5px;
+        font-size: em(10);
+        color: #fff;
+        text-transform: uppercase;
+        background: $gray3;
+        cursor: pointer;
+        @include rounded(3px);
+        &:hover { background: $green; }
+    }
+}

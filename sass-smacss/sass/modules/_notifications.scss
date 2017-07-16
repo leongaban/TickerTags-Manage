@@ -1,0 +1,60 @@
+/* Notifications
+============================================================
+========================================================= */
+
+// Animations
+// ---------------------------------------------------------
+@-webkit-keyframes slideInDown {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideInDown {
+    -webkit-animation-name: slideInDown;
+    animation-name: slideInDown;
+}
+
+// Main Classes
+// ---------------------------------------------------------
+.ng-note,
+.note-msg,
+.note-bg         { position: fixed; top: 0; width: 100%; }
+.ng-note         { z-index: 20000; cursor: pointer; }
+.note-bg.success { background: $green; }
+.note-bg.failure { background: $red; }
+
+.note-msg {
+    padding-top: 25px;
+    font-family: 'robotolight';
+    font-size: em(22);
+    text-align: center;
+    color: #fff;
+    z-index: 20002;
+}
+
+.note-bg {
+    opacity: .8;
+    height: 75px;
+    z-index: 20001;
+}

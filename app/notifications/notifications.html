@@ -1,0 +1,4 @@
+<div ng-show="note.showNote" ng-click="note.closeNotification()" class="ng-note animation">
+    <p class="note-msg" ng-class="{ 'animated' : note.showNote, 'slideInDown' : note.showNote }">{{note.note_message}}</p>
+    <div class="note-bg {{note.note_type}}" ng-class="{ 'animated' : note.showNote, 'slideInDown' : note.showNote }"></div>
+</div>

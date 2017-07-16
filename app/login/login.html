@@ -1,0 +1,18 @@
+<div class="login-view" ng-controller="LoginCtrl">
+    <div class="login-area">
+        <header class="logo-header">
+            <div class="tickertags-logo"></div>
+            <h1>Admin</h1>
+        </header>
+
+        <div class="divider"><hr></div>
+
+        <section class="login-form">
+            <form name="loginForm" ng-submit="login(credentials)" novalidate>
+                <input type="text" id="username" placeholder="Username" name="username" ng-model="credentials.username">
+                <input type="password" id="password" placeholder="Password" name="password" ng-model="credentials.password">
+                <button type="submit" class="btn-green">Login &raquo;</button>
+            </form>
+        </section>
+    </div>
+</div>

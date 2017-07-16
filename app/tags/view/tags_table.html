@@ -1,0 +1,145 @@
+<div class="view tags-view" ng-class="{ 'top40' : tb.isSearch }">
+    <div class="container tags-view-container">
+        
+        <div ng-show="!tb.loading" class="loading-spinner">
+            <div class="icon-spin5 animate-spin"></div>
+            <p>Loading tags, please wait...</p>
+        </div>
+
+        <section ng-show="tb.loading" class="tags-body">
+       	<section class="tags-body">
+            <section class="tag-rows">
+                <div class="tag-actions-row">
+                    <div class="bulk-actions mt10">
+                        <button class="btn-green-sm"
+                                ng-hide="tb.table == 'reports' || tb.table == 'deleted'"
+                                ng-disabled="tb.noCheck"
+                                ng-class="{ 'btn-grayed' : tb.noCheck }"
+                                ng-click="tb.massDelete(tb.tags)">Delete</button>
+                        <button class="btn-green-sm"
+                                ng-hide="tb.isSearch"
+                                ng-disabled="tb.noCheck"
+                                ng-class="{ 'btn-grayed' : tb.noCheck }"
+                                ng-click="tb.editCategory(tb.tags)">Edit category</button>
+
+                        <button class="btn-green-sm"
+                                ng-disabled="tb.noCheck"
+                                ng-class="{ 'btn-grayed' : tb.noCheck }"
+                                ng-click="tb.massExactMatch(tb.tags)">Exact match</button>
+                    </div>
+                    <div class="tag-search mt10">
+                        <input class="tag-search-input" type="text" placeholder="Search Tags"
+                               id="tag-search-id"
+                               ng-model="tb.tagSearch">
+                    </div>
+                </div>
+
+                <form method="POST" action="" name="tagsForm" onsubmit="return false;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="sort-bulk" ng-hide="tb.tableType == 'deleted'">
+                                    <input type="checkbox" value="" id="" name="check" ng-model="tb.allChecked" ng-change="tb.allCheckedChanged(tb.allChecked)"/>
+                                </td>
+                                <td class="sort-tag">
+                                    <span ng-click="tb.predicate = 'term'; tb.reverse=!tb.reverse;">Tag</span>
+                                    <span class="fr" ng-click="tb.predicate = 'word_count'; tb.reverse=!tb.reverse; tb.toggleSort('word')">Word count</span>
+                                </td>
+                                <td ng-show="tb.isSearch">
+                                    Tickers
+                                </td>
+                                <td class="sort-event" ng-hide="tb.table == 'reports' || tb.isSearch">
+                                    <span ng-click="tb.predicate = 'event'; tb.reverse=!tb.reverse;">Event</span>
+                                </td>
+                                <td class="sort-priority" ng-hide="tb.table == 'reports' || tb.isSearch">
+                                    <span ng-click="tb.predicate = 'priority'; tb.reverse=!tb.reverse;">Priority</span>
+                                </td>
+                                <td class="sort-category" ng-hide="tb.isSearch">
+                                    <span ng-click="tb.predicate = 'tag'; tb.reverse=!tb.reverse;">Category</span>
+                                </td>
+                                <td class="sort-vol">
+                                    <span ng-click="tb.predicate = 'week_quantity'; tb.reverse=!tb.reverse; tb.capturePredicate(tb.predicate)">Week vol</span>
+                                </td>
+                                <td class="sort-user">
+                                    <span ng-click="tb.predicate = 'username'; tb.reverse=!tb.reverse;">User</span>
+                                </td>
+                                <td class="sort-times">
+                                    <span ng-click="tb.setupOrderDate();">Date</span>
+                                </td>
+                                <td ng-hide="!tb.showingAllTags || tb.tableType == 'deleted' || tb.tableType == 'reports' || tb.isSearch">Delete</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="tag in tb.tags | filter:tb.tagSearch | orderBy:tb.predicate:tb.reverse track by $index"
+                                ng-class="{ 'inactive' : tag.active == 0, 'updated-row' : tag.updated }">
+                                <td class="check-item" ng-hide="tb.tableType == 'deleted'">
+                                    <input type="checkbox" value="{{$index}}" ng-model="tag.checked" ng-change="tb.rowChecked()" id="checkBox{{$index}}" name="checkBox" />
+                                </td>
+                                <td class="tag-term" ng-if="tb.table == 'reports'">
+                                    <div class="fl tag disabled" ng-bind="tag.term"></div>
+                                    <div ng-show="tag.refreshing" class="fl"><span class="icon-spin5 animate-spin animate green"></span></div>
+                                    <div ng-hide="tag.refreshing" class="icon-cw" title="Refresh tag data" ng-click="tb.refreshTag(tag)"></div>
+                                    <span class="fr" ng-bind="tag.word_count"></span>
+                                </td>
+                                <td class="tag-term" ng-if="tb.table != 'reports'">
+                                    <div class="fl tag" ng-bind="tag.term" ng-click="tb.editTag(tag)"></div>
+                                    <div ng-show="tag.refreshing" class="fl"><span class="icon-spin5 animate-spin animate green"></span></div>
+                                    <div ng-hide="tag.refreshing" class="icon-cw" title="Refresh tag data" ng-click="tb.refreshTag(tag)"></div>
+                                    <span class="fr" ng-bind="tag.word_count"></span>
+                                </td>
+                                <td ng-show="tb.isSearch" class="w20">
+                                    {{ tag.tickers.length || 1 }}
+                                </td>
+                                <td class="w20" ng-hide="tb.table == 'reports' || tb.isSearch == true">
+                                    <input type="checkbox" value="" name="event" ng-model="tag.event" ng-change="tb.changeEventPriority(tag, 'event')"/>
+                                </td>
+                                <td class="w20" ng-hide="tb.table == 'reports' || tb.isSearch == true">
+                                    <input type="checkbox" value="" name="priority" ng-model="tag.priority" ng-change="tb.changeEventPriority(tag, 'priority')"/>
+                                </td>
+                                <td class='tag-categories' ng-hide="tb.tableType == 'deleted' || tb.isSearch">
+                                    <select ng-model="tag.tag" ng-change="tb.changeCategory(tag)">
+                                        <option ng-selected="tag.tag == 'brand'" value="brand">Brand</option>
+                                        <option ng-selected="tag.tag == 'cashtag'" value="cashtag">Cashtag</option>
+                                        <option ng-selected="tag.tag == 'client'" value="client">Client</option>
+                                        <option ng-selected="tag.tag == 'competitor-name'" value="competitor-name">Competitor Name</option>
+                                        <option ng-selected="tag.tag == 'company-name'" value="company-name">Company Name</option>
+                                        <option ng-selected="tag.tag == 'government'" value="government">Government / Regulation</option>
+                                        <option ng-selected="tag.tag == 'events'" value="events">Events</option>
+                                        <option ng-selected="tag.tag == 'industry'" value="industry">Industry</option>
+                                        <option ng-selected="tag.tag == 'people'" value="people">People</option>
+                                        <option ng-selected="tag.tag == 'news'" value="news">News</option>
+                                        <option ng-selected="tag.tag == 'philanthropic'" value="philanthropic">Philanthropic</option>
+                                        <option ng-selected="tag.tag == 'place'" value="place">Place</option>
+                                        <option ng-selected="tag.tag == 'products'" value="products">Products</option>
+                                        <option ng-selected="tag.tag == 'product-category'" value="product-category">Product Category</option>
+                                        <option ng-selected="tag.tag == 'product-competing'" value="product-competing">Product (competing)</option>
+                                        <option ng-selected="tag.tag == 'product-feature'" value="product-feature">Product Feature</option>
+                                        <option ng-selected="tag.tag == 'problem'" value="problem">Problem</option>
+                                        <option ng-selected="tag.tag == 'subsidiary'" value="subsidiary">Subsidiary</option>
+                                        <option ng-selected="tag.tag == 'related-company-name'" value="related-company-name">Related Company Name</option>
+                                        <option ng-selected="tag.tag == 'trend'" value="trend">Trend</option>
+                                    </select>
+                                </td>
+
+                                <td class='tag-categories' ng-show="tb.tableType == 'deleted'" ng-bind="tag.tag"></td>
+
+                                <td class="vol"  ng-bind="tag.week_quantity"></td>
+                                <td class="user" ng-bind="tag.username"></td>
+                                <td class="timespan">{{ tag.added_epoch | fromTimestamp:'MMM Do YYYY' }}</td>
+                                <td ng-show="tb.table == 'reports'" class="reported-actions">
+                                    <button class="btn-green-sm" ng-click="tb.reportApprove(tag)">Approve</button>
+                                    <button class="btn-red-sm"   ng-click="tb.reportDeny(tag)">Deny</button>
+                                </td>
+                                <td ng-hide="tb.table == 'deleted' || tb.table == 'reports' || tb.isSearch">
+                                    <div class="icon-cancel-circled" ng-click="tb.deleteTag(tag)"></div>
+                                </td>
+                                <td ng-show="tb.table == 'deleted'"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </section>
+        </section>
+    </div>
+</div>

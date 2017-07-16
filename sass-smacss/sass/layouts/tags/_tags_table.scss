@@ -1,0 +1,218 @@
+/* Tags Table
+============================================================
+========================================================= */
+
+// Animations
+// ---------------------------------------------------------
+.updated-row {
+    -moz-animation: updateFade .5s linear;
+    -o-animation: updateFade .5s linear;
+    -webkit-animation: updateFade .5s linear;
+    animation: updateFade .5s linear;
+}
+@-webkit-keyframes updateFade {
+    0%   { opacity: .2; background: $green; }
+    100% { background: $gray0; }
+}
+
+// Main classes
+// ---------------------------------------------------------
+.tags-body {
+    .toggle-tables {
+        margin-left: 20px;
+        padding: 10px 10px 0 10px;
+        // -webkit-border-radius: 6px 6px 0px 0px;
+        // -moz-border-radius: 6px 6px 0px 0px;
+        // border-radius: 6px 6px 0px 0px;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d6d6d6+0,f0f0f0+100 */
+        // background: #d6d6d6; /* Old browsers */
+        // background: -moz-linear-gradient(top,  #d6d6d6 0%, #f0f0f0 100%); /* FF3.6-15 */
+        // background: -webkit-linear-gradient(top,  #d6d6d6 0%,#f0f0f0 100%); /* Chrome10-25,Safari5.1-6 */
+        // background: linear-gradient(to bottom,  #d6d6d6 0%,#f0f0f0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        // border-bottom: 1px solid lighten($gray2, 5%);
+    }
+}
+
+.tickers-rows,
+.tag-rows {
+    float: left;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
+    font-size: em(13);
+
+    .vol { text-align: right; }
+
+    .actions { margin: 0 auto; padding-left: 10px; width: 60px; height: 20px; }
+
+    .deactivate { padding-right: 0 !important; }
+
+    table {
+        width: 100%;
+        td { padding: 4px 12px; vertical-align: middle; }
+        tr {
+            // border-bottom: 1px dotted $gray0;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+        }
+    }
+
+    thead,
+    tbody { font-size: em(13); }
+
+    thead {
+        font-family: 'robotobold';
+        color: $gray5;
+        // border-bottom: 1px solid $gray2;
+        border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+        span {
+            cursor: pointer;
+            &:hover { color: $green; }
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+            &:hover,
+            &.alt:hover {
+                border-top:    1px solid rgba(204, 204, 204, .5);
+                border-bottom: 1px solid rgba(204, 204, 204, .5);
+                // border-top:    1px solid lighten($gray2, 10%);
+                // border-bottom: 1px solid lighten($gray2, 10%);
+            }
+        }
+    }
+
+    select {
+       background: #fff;
+       padding: 2px 5px;
+       font-size: 10px;
+       line-height: 1;
+       border: 1;
+       border-radius: 4px;
+       -webkit-appearance: none;
+    }
+}
+
+.sort-event,
+.sort-priority { text-align: center; }
+
+// thead
+// ---------------------------------------------------------
+.sort-bulk {
+    input { margin-right: 5px; }
+}
+
+.sort-vol,
+.sort-times { text-align: right; }
+
+// .sort-deactivated {
+//     padding-right: 0 !important;
+
+//     .icon-eye-off {
+//         &:hover { color: $gray5 !important; }
+//     }
+// }
+
+// .sort-flagged {
+//     .icon-flag {
+//         color: $gray5;
+//         &:hover { color: $gray5 !important; }
+//     }
+// }
+
+// td
+// ---------------------------------------------------------
+.check-item,
+.watch,
+.deactivate,
+.flag { width: 1% !important; }
+
+.tag-term {
+    width: 25%;
+    .tag {
+        display: inline-block;
+        width: auto;
+        font-size: em(18);
+        line-height: em(22);
+        cursor: pointer;
+        &:hover { color: $green; }
+    }
+}
+
+.tag.disabled {
+    cursor: default;
+    &:hover { color: $gray4; }
+}
+
+.vol {
+    width: 8%;
+    cursor: pointer;
+    &:hover { color: $green; }
+}
+
+.tag-categories {
+    width: 80px;
+    select { border: 1px solid darken($green, 5%); }
+}
+
+.user     { width: 80px; }
+.status   { width: 60px; }
+.timespan { width: 100px; text-align: right; }
+.watching { background: $green0; }
+
+.inactive {
+    background: lighten($gray2, 16%);
+
+    .category,
+    .vol-count,
+    .user,
+    .timestamp,
+    .status { opacity: .5; }
+
+    .icon-eye-off { color: $red; }
+}
+
+.flagged {
+    background: lighten($red, 25%);
+    .icon-flag { color: $red; }
+}
+
+.reported-actions {
+    float: right;
+    width: 100px;
+
+    .btn-red-sm { margin-left: 10px; }
+}
+
+// Reported Tags
+// ---------------------------------------------------------
+.reported-tags-view {
+    tbody td { padding: 0 10px; }
+    .tag {
+        cursor: text;
+        &:hover { color: $gray4; }
+    }
+    .reported-actions { margin-top: 10px; }
+
+    .ticker-header {
+        padding-bottom: 15px;
+        .btn {
+            padding: 5px 10px; font-size: em(16); border: 0px; @include rounded(4px);
+            &:hover,
+            &:focus { color: $green; background: #fff; }
+            &:active,
+            &:active { color: #fff; background: $green; }
+        }
+    }
+
+    .tags-view-container { margin-top: 10px; }
+}
+
+.reported-ticker {
+    .ticker  {
+        margin: 7px 0;
+        padding: 3px 4px;
+        a { padding: 3px 4px; }
+    }
+}

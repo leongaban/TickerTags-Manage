@@ -1,0 +1,17 @@
+<div style="padding-top: 5px; padding-bottom: 5px">
+    <h3>Media Type:</h3>
+    <select placeholder="i.e Twitter"
+            ng-model="qr.media_type"
+            ng-change="qr.select(qr.report, media)"
+            ng-options="media for media in qr.medias">
+    </select>
+</div>
+<div style="padding-top: 5px; padding-bottom: 5px">
+    <label>Queue Report </label>
+    <input type="checkbox" ng-click="qr.update(qr.report)" ng-checked="qr.report.status === 1">
+</div>
+<div style="padding-top: 5px; padding-bottom: 5px">
+    <input type="submit" ng-click="qr.save(qr.report, qr.media_type)" value="Save configuration">
+    <input type="submit" ng-click="qr.run(qr.report)" value="Run Report">
+    <input type="submit" ng-click="qr.delete(qr.report, qr.index)" value="Delete Report">
+</div>

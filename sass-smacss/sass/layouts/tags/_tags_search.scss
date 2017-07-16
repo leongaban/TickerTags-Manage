@@ -1,0 +1,12 @@
+/* Tags Search Results
+============================================================
+========================================================= */
+
+.tags-search-results {
+    header span { font-family: 'robotobold'; color: $green; }
+
+    .tags-body { margin-top: -20px; }
+
+    .tag-term,
+    .tag-categories { width: 30%; }
+}

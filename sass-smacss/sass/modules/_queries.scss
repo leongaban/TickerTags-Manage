@@ -1,0 +1,118 @@
+/*  Responsive media queries
+============================================================
+========================================================= */
+
+/* 3000
+========================================================= */
+@media all and (max-width: 3000px) {
+    // .td-ticker {
+    //     span {
+    //         margin-top: 10px;
+    //         width: 70%;
+    //         font-size: em(10) !important;
+    //     }
+    // }
+
+    // .ticker-name {
+    //     margin-right: 10px;
+    //     width: 20%;
+    // }
+}
+
+/* 1600
+========================================================= */
+@media all and (max-width: 1600px) {
+    .tickers-rows { width: 80%; }
+    // .tag-rows { width: 88%; }
+}
+
+/* 1550
+========================================================= */
+@media all and (max-width: 1550px) {
+    // .tag-rows { width: 87%; }
+}
+
+/* 1430
+========================================================= */
+@media all and (max-width: 1430px) {
+    .tickers-rows { width: 75%; }
+    // .tag-rows { width: 86%; }
+}
+
+/* 1330
+========================================================= */
+@media all and (max-width: 1330px) {
+    .tickers-rows { width: 71%; }
+    // .tag-rows { width: 85%; }
+
+    // .td-ticker {
+    //     span {
+    //         margin-top: 0;
+    //         width: 100%;
+    //     }
+    // }
+
+    // .ticker-name {
+    //     margin-right: 0;
+    //     width: 100%;
+    // }
+}
+
+/* 1250
+========================================================= */
+@media all and (max-width: 1250px) {
+    // .tag-rows { width: 80%; }
+}
+
+/* 1100
+========================================================= */
+@media all and (max-width: 1100px) {
+    // .tag-rows { width: 79%; }
+    .tag-term { width: 20%; }
+}
+
+/* 1000
+========================================================= */
+@media all and (max-width: 1000px) {
+    .tickers-rows { width: 60%; }
+}
+
+
+/* 900
+========================================================= */
+@media all and (max-width: 900px) {
+    .sort-trading,
+    .sort-ticker,
+    .sort-username,
+    .sort-update,
+    .sort-export {
+        font-size: em(14);
+    }
+
+    .td-update { font-size: em(10); }
+}
+
+/* 800
+========================================================= */
+@media all and (max-width: 800px) {
+}
+
+/* 768 (Mobile Break)
+========================================================= */
+@media all and (max-width: 768px) {
+}
+
+/* 640
+========================================================= */
+@media all and (max-width: 640px) {
+}
+
+/* 400
+========================================================= */
+@media all and (max-width: 400px) {
+}
+
+/* 360
+========================================================= */
+@media all and (max-width: 360px) {
+}

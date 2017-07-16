@@ -1,0 +1,42 @@
+<div>
+    <section class="admin-modal edit-category-modal">
+
+        <div class="close-x" ng-click="ecm.cancel()"></div>
+
+        <header>
+            <h1>Edit Category for the following tags <strong>(In all their Tickers)</strong></h1>
+             <div class="edit-category">
+                <select ng-model="ecm.newCategory" ng-change="ecm.selectCategory()">
+                    <option value="brand">Brand</option>
+                    <option value="client">Client</option>
+                    <option value="cashtag">Cashtag</option>
+                    <option value="competitor-name">Competitor Name</option>
+                    <option value="company-name">Company Name</option>
+                    <option value="government">Government / Regulation</option>
+                    <option value="events">Events</option>
+                    <option value="industry">Industry</option>
+                    <option value="news">News</option>
+                    <option value="people">People</option>
+                    <option value="philanthropic">Philanthropic</option>
+                    <option value="place">Place</option>
+                    <option value="products">Products</option>
+                    <option value="product-category">Product Category</option>
+                    <option value="product-competing">Product (competing)</option>
+                    <option value="product-feature">Product Feature</option>
+                    <option value="problem">Problem</option>
+                    <option value="related-company-name">Related Company Name</option>
+                    <option value="subsidiary">Subsidiary</option>
+                    <option value="trend">Trend</option>
+                    <option value="event">Event</option>
+                </select>
+            </div>
+            <section class="selected-tags">
+                <ul>
+                    <li ng-repeat="tag in ecm.tags">{{ tag.term }}</li>
+                </ul>
+            </section>
+        </header>
+        <div class="btn-green-sm" ng-click="ecm.updateCategories()">Update</div>
+    </section>
+    <div class="overlay" ng-click="ecm.cancel()"></div>
+</div>

@@ -1,0 +1,88 @@
+/* Login
+============================================================
+========================================================= */
+
+.login-view {
+    position: absolute;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    background: $gray5;
+}
+
+.login-area {
+    margin: 0 auto;
+    padding: 40px;
+    width: 320px;
+
+    h1 {
+        float: left;
+        margin: 5px 0 10px 20px;
+        width: 100px;
+        font-family: 'roboto_condensedlight';
+        font-size: em(38);
+        color: $gray1;
+
+        sup {
+            top: -20px;
+            font-size: em(6);
+        }
+    }
+
+    h2 {
+        float: left;
+        color: $gray2;
+    }
+
+    hr {
+        margin: 20px 0;
+        height: 1px;
+        border-top: 1px solid $gray5;
+        border-left: 1px solid $gray5;
+        border-right: 1px solid $gray5;
+        border-bottom: 1px solid $gray3;
+        background: $gray5;
+    }
+}
+
+.logo-header {
+    position: relative;
+    height: 70px;
+}
+
+.tickertags-logo {
+    float: left;
+    width: 184px;
+    height: 47px;
+}
+
+.login-form {
+    input {
+        margin-bottom: 20px;
+        width: 316px;
+        height: 45px;
+        font-family: 'robotolight';
+        font-size: 1em;
+        line-height: 24px;
+        text-indent: 20px;
+        color: white;
+        background: $gray5;
+        border: 1px solid $gray3;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        @include transition(all, 0.5s, ease-out);
+
+        &:focus,
+        &:active { border: 1px solid #fff; }
+    }
+
+    .btn { margin-top: 20px; }
+}
+
+.login-form input[type=text]:-moz-placeholder,
+.login-form input[type=text]::-moz-placeholder,
+.login-form input[type=text]:-ms-input-placeholder,
+.login-form input[type=text]::-webkit-input-placeholder {
+    color: white;
+}

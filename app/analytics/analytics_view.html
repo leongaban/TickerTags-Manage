@@ -1,0 +1,188 @@
+<div class="view analytics">
+    <div class="analytics-container container">
+        <header class="analytics-header">
+            <h1>Analytic Web Report</h1>
+        </header>
+        <form>
+		    <section class="analytics-table">
+		    	<table>
+		    		<thead>
+		    			<tr>
+		    				<td>Ticker</td>
+		    				<td>KPI</td>
+		    				<td>Tag</td>
+		    				<td>Data source</td>
+		    				<td>Correlation Type</td>
+		    				<td>Length of Period</td>
+		    			</tr>
+		    		</thead>
+
+		    		<tbody>
+		    			<tr>
+
+                            <td class="analytics-ticker">
+                                <input type="text" placeholder="Ticker" name="ticker" ng-model="an.ticker"
+                                       uib-typeahead="item.ticker for item in an.getMatches($viewValue)"
+                                       typeahead-on-select="an.onSelect($item, $model, $label, $event)"
+                                       typeahead-popup-template-url="analytics/analytics_config_result.html">
+
+                            </td>
+		    				<td class="analytics-kpi tag-categories">
+                                <select ng-model="an.kpi"
+                                        ng-options="kpi.name for kpi in an.kpis track by kpi.id"
+                                        ng-change="an.selectKpi(kpi)">
+                                </select>
+							</td>
+                            <td class="analytics-tag">
+                                <input type="text" placeholder="Search tag" name="term" ng-model="an.term.term"
+                                       uib-typeahead="item.term for item in an.getTerms($viewValue)"
+                                       typeahead-on-select="an.selectTerm($item, $model, $label, $event)"
+                                       typeahead-popup-template-url="analytics/analytics_config_result.html">
+
+                            </td>
+		    				<td>
+		    					<input type="text" placeholder="Source" name="source" ng-model="an.data_source">
+		    				</td>
+                            <td class="analytics-kpi tag-categories">
+                                <select ng-model="an.correlation_type"
+                                        ng-options="correlation for correlation in an.correlations">
+                                </select>
+								<select ng-model="an.report_period_type"
+										ng-options="period_type for period_type in an.report_period_types">
+								</select>
+                            </td>
+		    				<td>
+		    					<input type="text" placeholder="Period length" name="period-length" ng-model="an.period_type">
+		    				</td>
+                            <td>
+		    			</tr>
+		    		</tbody>
+		    	</table>
+
+		    	<table>
+		    		<thead>
+		    			<td>Mentions <span>(Current Period - Not Yet Reported)</span></td>
+						<td>Frequency <span>(YoY % Change)</span></td>
+						<td>Frequency <span>(PoP % Change)</span></td>
+						<td>Correlation Score</td>
+						<td width="80">Historical Periods Factored Into Correlation Score</td>
+						<td>TickerTags KPI Projection</td>
+		    		</thead>
+		    		<tbody>
+						<td class="analytics-current-mentions">
+							<input type="text" placeholder="Current mentions" name="mentions" ng-model="an.current_mentions">
+						</td>
+						<td class="analytics-mentions-yoy">
+							<input type="text" placeholder="Frequency YoY change" name="yoy" ng-model="an.frequency_yoy">
+						</td>
+						<td class="analytics-mentions-pop">
+							<input type="text" placeholder="Frequency PoP change" name="pop" ng-model="an.frequency_pop">
+						</td>
+						<td>
+							<input type="text" placeholder="Correlation score" name="correlation" ng-model="an.correlation_score">
+						</td>
+						<td>
+							<input type="text" placeholder="Historical periods" name="historical-periods" ng-model="an.historical_periods">
+						</td>
+						<td>
+                            <input type="text" placeholder="KPI Projection" name="kpi-forecast-company" ng-model="an.kpi_forecast">
+                        </td>
+		    		</tbody>
+		    	</table>
+
+		    	<table>
+		    		<thead>
+		    			<td>KPI Estimate <span>(Analyst Consensus)</span></td>
+						<td width="80">KPI Directional Indicator <span>(Tags Derived) In Line = less than 5% deviation from Analyst Consensus</span></td>
+						<td width="80">TickerTags vs. Analyst Consensus Win Rate</td>
+						<td width="80">Most Recent TickerTags Report</td>
+						<td>Next KPI Report Date</td>
+						<td>Next KPI Reporting Period Name</td>
+		    		</thead>
+		    		<tbody>
+						<td>
+							<input type="text" placeholder="KPI Estimate" name="kpi-estimate" ng-model="an.kpi_estimate">
+							<button ng-click="an.indicator(an.kpi_estimate, an.kpi_forecast)" class="btn-green-sm"> Set </button>
+						</td>
+						<td>
+							<input type="text" placeholder="KPI Directional Indicator" name="kpi-directional-indicator" ng-model="an.kpi_directional_indicator">
+						</td>
+						<td>
+							<input type="text" placeholder="Win rate" name="win-rate" ng-model="an.report.win_rate">
+						</td>
+						<td>
+							<input type="text" placeholder="Recent TickerTags Report Date" name="tickertags-reports-date" ng-model="an.most_recent_report">
+						</td>
+						<td>
+							<input type="text" placeholder="Next KPI Report Date" name="KPI-report-date" ng-model="an.next_kpi_report_date">
+						</td>
+						<td>
+							<input type="text" placeholder="Next KPI Reporting Period Name" name="KPI-period-name" ng-model="an.next_kpi_period_name">
+						</td>
+		    		</tbody>
+		    	</table>
+		    </section>
+            <button ng-click="an.reset()" class="btn-green analytics-btn" type="submit">Reset</button>
+            <button ng-click="an.runWebAnalytics()" class="btn-green analytics-btn" type="submit">Run web report</button>
+            <button ng-click="an.saveWebReport()" class="btn-green analytics-btn" type="submit">Publish web report</button>
+
+		</form>
+	</div>
+
+	<div class="analytics-container container">
+        <header class="analytics-header">
+            <h1>Analytics Report Queue</h1>
+        </header>
+        <section class="analytics-table">
+	        <table>
+	        	<thead>
+	        		<tr>
+	    				<td>Ticker</td>
+	    				<td>KPI</td>
+	    				<td>Tag</td>
+	    				<td>Data source</td>
+	    				<td>Correlation Type</td>
+	    				<td>Length of Period</td>
+	    				<td>Mentions <span>(Current Period - Not Yet Reported)</span></td>
+						<td>Frequency <span>(YoY % Change)</span></td>
+						<td>Frequency <span>(PoP % Change)</span></td>
+						<td>Correlation Score</td>
+						<td width="80">Historical Periods Factored Into Correlation Score</td>
+						<td>TickerTags KPI Projection</td>
+						<td>KPI Estimate <span>(Analyst Consensus)</span></td>
+						<td width="80">KPI Directional Indicator <span>(Tags Derived) In Line = less than 5% deviation from Analyst Consensus</span></td>
+						<td width="80">TickerTags vs. Analyst Consensus Win Rate</td>
+						<td width="80">Most Recent TickerTags Report</td>
+						<td>Next KPI Report Date</td>
+						<td>Next KPI Reporting Period Name</td>
+						<td></td>
+	    			</tr>
+	        	</thead>
+	        	<tbody class="f12">
+	        		<tr class="report-row" ng-repeat="report in an.reports">
+	        			<td>{{ report.config.ticker }}</td>
+	        			<td>{{ report.kpi.name }}</td>
+	        			<td>{{ report.term.term }}</td>
+	        			<td>{{ report.source }}</td>
+	        			<td>{{ report.correlation_type }} {{ report.report_period_type }}</td>
+	        			<td>{{ report.config.period_type }}</td>
+	        			<td>{{ report.current_mentions }}</td>
+	        			<td>{{ report.frequency_yoy }}</td>
+	        			<td>{{ report.frequency_pop }}</td>
+	        			<td>{{ report.correlation_score }}</td>
+	        			<td>{{ report.historical_periods }}</td>
+	        			<td>{{ report.kpi_forecast }}</td>
+	        			<td>{{ report.kpi_estimate }}</td>
+	        			<td>{{ report.kpi_directional_indicator }}</td>
+	        			<td>{{ report.win_rate }}</td>
+	        			<td>{{ report.most_recent_report | humanDate }}</td>
+	        			<td>{{ report.next_kpi_report_date | humanDate }}</td>
+	        			<td>{{ report.next_kpi_period_name }}</td>
+						<td><button ng-click="an.setCurrent(report, $index)">Edit report</button></td>
+						<td ng-hide="report.web_report === null"><button ng-click="an.removeWebReport(report, $index)">Unpublish report</button></td>
+	        		</tr>
+	        	</tbody>
+	        </table>
+		</section>
+	</div>
+</div>

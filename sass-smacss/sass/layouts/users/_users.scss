@@ -1,0 +1,120 @@
+/* Users
+============================================================
+========================================================= */
+
+.users-view {
+    float: left;
+    position: relative;
+    top: 110px;
+    width: 100%;
+    height: 100%;
+
+    .users-header { margin-top: 10px; }
+
+    .container {
+        padding: 0;
+        header { width: auto; min-width: 1200px; }
+    }
+
+    .pagination {
+        margin-top: 15px;
+        li { float: left; margin-right: 4px; font-size: em(12); }
+    }
+}
+
+.users-table {
+    tbody {
+        tr:first-child {
+            td { border-top: 1px solid $gray1; }
+        }
+    }
+}
+
+.loading-pages { font-size: em(12); }
+
+.btn-page {
+    opacity: .8;
+    padding: 5px 7px;
+    font-family: 'robotolight';
+    border: 1px dotted $gray3;
+    background: $gray0;
+    @include rounded(4px);
+
+    &:hover { color: #fff; background: $green; }
+}
+
+.active .btn-page {
+    opacity: 1;
+    font-family: 'roboto_condensedbold';
+    color: $green;
+    border: 1px solid $green;
+
+    &:hover { color: #fff; background: $green; }
+}
+
+.users-view-container {
+    height: 100%;
+    .header-top, nav { float: left; width: 100%; }
+}
+
+.users-header {
+    position: fixed;
+    top: 75px;
+    z-index: 3;
+    padding: 25px 20px 5px 20px;
+    height: 80px;
+    background: $gray1;
+
+    h1 {
+        float: left;
+        margin-top: 5px;
+        margin-right: 10px;
+        font-size: em(20);
+    }
+
+    h3 { float: left; font-size: em(12); margin: 10px 20px 0 0; }
+
+    .btn-green {
+        float: left;
+        padding: 5px 5px 20px 5px;
+        width: 95px;
+        height: 30px;
+    }
+}
+
+.user-search-input {
+    float: left;
+    margin: 0 10px 0 40px;
+    padding: 4px 6px;
+    height: 20px;
+    border: 1px solid $gray2;
+    @include rounded(4px);
+}
+
+.users-thead {
+    position: fixed;
+    top: 190px;
+    max-width: 1170px;
+    min-width: 975px;
+    background: $gray1;
+}
+
+.users-body-container {
+    position: relative;
+    z-index: 1;
+    top: 135px;
+
+    .view-table { margin-top: 70px !important; }
+
+    .loading-spinner { margin-left: 20px; padding-left: 20px; }
+}
+
+.users-body {
+    float: left;
+    margin-top: -95px;
+    max-width: 1173px;
+
+    td { width: 25%; }
+
+    .admin { font-family: 'robotobold'; }
+}

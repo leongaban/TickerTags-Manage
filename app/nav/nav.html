@@ -1,0 +1,50 @@
+<section class="top-menu">
+        
+    <div class="main-menu">
+        <p>TickerTags Admin</p>
+        <p>|</p>
+
+        <ul class="main-sections">
+            <li><a href="#/tickers">Tickers</a></li>
+            <li><a href="#/reports">Tag Reports <span ng-show="nav.showReported" class="reported_alerts">{{ nav.reportedTotal }}</span></a></li>
+            <li><a href="#/bulk_add">Bulk add</a></li>
+            <li><a href="#/bulk_terms">Bulk Tags</a></li>
+            <li><a href="#/analytics">Analytics</a></li>
+            <li><a href="#/users">Users</a></li>
+            <li><a href="#/rest">Rest</a></li>
+            <li><a href="#/topics">Topics</a></li>
+            <li><a href="#/admin">Admin</a></li>
+        </ul>
+
+        <ul class="user-menu">
+            <li>{{ nav.hello }} {{ nav.username }}!</li>
+            <li>|</li>
+            <li><a href="#/settings">Settings</a></li>
+            <li ng-click="nav.logout()">Logout</li>
+        </ul>
+    </div>
+
+    <header class="ticker-view-header">
+        <div class="ticker-search">
+            <form ng-submit="nav.searchForTicker(nav.searchTickersInput)">
+                <input type="text" id="searchTickersInput" placeholder="Search tickers" ng-model="nav.searchTickersInput">
+                <button class="btn-green ml5 w80">Search</button>
+            </form>
+        </div>
+
+        <div class="ticker-actions">
+            <button class="btn-green" ng-click="nav.openAddTickerModal()" tabindex="2">
+                Ticker <span>(Add/Remove/Transfer)</span>
+            </button>
+        </div>
+        
+        <div class="tag-search">
+            <form ng-submit="nav.searchTags()">
+                <input type="text" ng-model="nav.searchedTag" placeholder="Search Tags" tabindex="3">
+                <button class="btn-green ml5 w80">Search</button>
+            </form>
+        </div>
+
+        <add-tag-button on-typing="ct.tickerTyping(ticker)"></add-tag-button>
+    </header>
+</section>

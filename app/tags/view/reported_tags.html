@@ -1,0 +1,98 @@
+<div class="view reported-tags-view tags-view" ng-keydown="onKeyDown($event)">
+    <div class="container tags-view-container">
+        <header class="ticker-header">
+            <h1>
+                <button ng-class="{ 'btn-green-sm' : reps.viewAll }"
+                        ng-click="reps.toggleTables('all')"
+                        class="btn">View all reports</button> <span>({{ reps.reportedTotal }})</span>
+                <button ng-class="{ 'btn-green-sm' : !reps.viewAll }"
+                        ng-click="reps.toggleTables('mine')"
+                        class="btn">View reports for my Tickers</button> <span>({{ reps.myTotal }})</span>
+            </h1>
+            <div class="bull" ng-click="reps.displayChris()">
+                <img src="assets/static/bull.png" alt="">
+            </div>
+        </header>
+
+        <div ng-show="!reps.tagsLoaded" class="loading-spinner">
+            <div class="icon-spin5 animate-spin"></div>
+            <p>Loading tags, please wait...</p>
+        </div>
+
+        <div class="chris_container" ng-class="{ 'display-on' : reps.showChris }">
+            <div class="chris"></div>
+        </div>
+
+        <section ng-show="reps.tagsLoaded" class="tags-body">
+            <section class="tag-rows">
+                <form method="POST" action="" name="tagsForm" onsubmit="return false;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td class="sort-ticker">
+                                    <span ng-click="predicate = 'ticker'; reverse=!reverse;">Ticker</span>
+                                </td>
+                                <td class="sort-tag">
+                                    <span ng-click="predicate = 'term'; reverse=!reverse;">Tag</span>
+                                    <span class="fr" ng-click="predicate = 'word_count'; reverse=!reverse; reps.toggleSort('word')">Word count</span>
+                                </td>
+                                <td class="sort-category">
+                                    <span ng-click="predicate = 'tag'; reverse=!reverse;">Category</span>
+                                </td>
+                                <td class="sort-user">
+                                    <span ng-click="predicate = 'username'; reverse=!reverse;">Submitter</span>
+                                </td>
+                                <td class="sort-times">
+                                    <span ng-click="predicate = 'added_epoch'; reverse=!reverse;">Date</span>
+                                </td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr ng-repeat="tag in reps.terms | orderBy:predicate:reverse track by $index"
+                                ng-class="{ 'inactive' : tag.active == 0, 'updated-row' : tag.updated }">
+                                <td class="reported-ticker">
+                                    <div class="ticker"><a href="#/tags?ticker={{tag.ticker}}">{{ tag.ticker }}</a></div>
+                                </td>
+                                <td class="tag-term">
+                                    <div class="tag" ng-bind="tag.term" ng-click="reps.editTag(tag)"></div>
+                                    <span class="fr" ng-bind="tag.word_count"></span>
+                                </td>
+                                <td class='tag-categories'>
+                                    <select ng-model="tag.tag" ng-change="reps.changeCategory(tag)">
+                                        <option ng-selected="tag.tag == 'brand'" value="brand">Brand</option>
+                                        <option ng-selected="tag.tag == 'cashtag'" value="cashtag">Cashtag</option>
+                                        <option ng-selected="tag.tag == 'client'" value="client">Client</option>
+                                        <option ng-selected="tag.tag == 'competitor-name'" value="competitor-name">Competitor Name</option>
+                                        <option ng-selected="tag.tag == 'company-name'" value="company-name">Company Name</option>
+                                        <option ng-selected="tag.tag == 'government'" value="government">Government / Regulation</option>
+                                        <option ng-selected="tag.tag == 'events'" value="events">Events</option>
+                                        <option ng-selected="tag.tag == 'industry'" value="industry">Industry</option>
+                                        <option ng-selected="tag.tag == 'people'" value="people">People</option>
+                                        <option ng-selected="tag.tag == 'news'" value="news">News</option>
+                                        <option ng-selected="tag.tag == 'philanthropic'" value="philanthropic">Philanthropic</option>
+                                        <option ng-selected="tag.tag == 'place'" value="place">Place</option>
+                                        <option ng-selected="tag.tag == 'products'" value="products">Products</option>
+                                        <option ng-selected="tag.tag == 'product-category'" value="product-category">Product Category</option>
+                                        <option ng-selected="tag.tag == 'product-competing'" value="product-competing">Product (competing)</option>
+                                        <option ng-selected="tag.tag == 'product-feature'" value="product-feature">Product Feature</option>
+                                        <option ng-selected="tag.tag == 'problem'" value="problem">Problem</option>
+                                        <option ng-selected="tag.tag == 'subsidiary'" value="subsidiary">Subsidiary</option>
+                                        <option ng-selected="tag.tag == 'related-company-name'" value="related-company-name">Related Company Name</option>
+                                        <option ng-selected="tag.tag == 'trend'" value="trend">Trend</option>
+                                    </select>
+                                </td>
+                                <td class="user" ng-bind="tag.username"></td>
+                                <td class="timespan">{{ tag.added_epoch | fromTimestamp:'MMM Do YYYY' }}</td>
+                                <td class="reported-actions">
+                                    <button class="btn-green-sm" ng-click="reps.reportApprove(tag)">Approve</button>
+                                    <button class="btn-red-sm"   ng-click="reps.reportDeny(tag)">Deny</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </section>
+        </section>
+    </div>
+</div>

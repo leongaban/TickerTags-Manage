@@ -1,0 +1,44 @@
+<div class="view bulk-terms-view">
+    <div class="container">
+    	<header>
+	    	<h1>{{ btc.headerTitle }}</h1>
+    	</header>
+      <header>
+        <h2 class="orange">If you leave Sector or Ticker blank, you will bulk add to all Tickers & Sectors.</h2>
+      </header>
+    </div>
+    <div class="container">
+      <table border="0" width="90%">
+        <tr>
+          <td width="25%">Sector</td>
+          <td width="25%">Ticker</td>
+          <td width="25%">Term</td>
+          <td width="25%">&nbsp;</td>
+        </tr>
+        <tr>
+          <td><select ng-model="btc.new_bulk_term.sector_id">
+              <option ng-repeat="sector in btc.sectors" value="{{sector.id}}">{{sector.name}}</option>
+            </select></td>
+          <td><input type="text" ng-model="btc.new_bulk_term.ticker"></td>
+          <td><input type="text" ng-model="btc.new_bulk_term.term" placeholder="trump +$company-name"></td>
+          <td><input type="submit" ng-click="btc.addBulkTerm(btc.new_bulk_term)" value="Add Bulk Tag"></td>
+        </tr>
+      </table>
+   </div>
+    <div class="container">
+      <table border="0" width="90%">
+        <tr>
+          <td width="25%">Sector</td>
+          <td width="25%">Ticker</td>
+          <td width="25%">Term</td>
+          <td width="25%">&nbsp;</td>
+        </tr>
+        <tr ng-repeat="bulk_term in btc.bulk_terms">
+          <td>{{bulk_term.sector}}</td>
+          <td>{{bulk_term.ticker}}</td>
+          <td>{{bulk_term.term}}</td>
+          <td><a ng-click="btc.removeBulkTerm(bulk_term.id)">remove</a></td>
+        </tr>
+      </table>
+    </div>
+</div>

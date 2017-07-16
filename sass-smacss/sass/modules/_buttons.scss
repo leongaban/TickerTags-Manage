@@ -1,0 +1,98 @@
+/* Buttons
+============================================================
+========================================================= */
+
+.ticker {
+    float: left;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    margin: 0 10px 10px 0;
+    // padding: 5px 8px;
+    width: auto;
+    color: #F5F5F5; background: $gray2;
+    cursor: pointer !important;
+    clear: both;
+    @include rounded(4px);
+    @include transition(all, .3s, ease-out);
+    &:hover { background: $gray5; }
+}
+
+.ticker a {
+    display: block;
+    padding: 5px 8px;
+    color: #fff;
+    &:hover { text-decoration: none; }
+    &:active,
+    &:focus { color: $green !important; }
+}
+
+.btn-green,
+.btn-green-sm,
+.btn-red-sm,
+.btn-grayed,
+.btn-util {
+    z-index: 10;
+    font-family: robotoregular;
+    text-align: center;
+    @include rounded(4px);
+}
+
+.btn-green,
+.btn-green-sm,
+.btn-red-sm {
+    color: #fff;
+    background: $green;
+    cursor: pointer;
+    @include transition(all, .4s, ease-out);
+
+    &:hover,
+    &:focus { color: $green; background: #fff; }
+
+    &:active,
+    &:active { color: #fff; background: $green; }
+}
+
+.btn-util {
+    padding: 7px 10px;
+    color: #fff;
+    font-size: em(11);
+    background: $tag_cyan;
+    border: 2px solid $tag_cyan;
+    cursor: pointer;
+    @include transition(all, .4s, ease-out);
+
+    &:hover,
+    &:focus { color: $tag_cyan; background: lighten($tag_cyan, 20%); }
+
+    &:active,
+    &:active { color: #fff; background: $tag_cyan; }
+}
+
+.btn-grayed {
+    opacity: .25;
+    color: $gray2;
+    background: $gray4;
+    border: 2px solid $gray3 !important;
+
+    &:hover,
+    &:focus { color: $gray2; background: $gray4; }
+}
+
+.btn-red-sm {
+    color: #fff;
+    background: $red;
+    border: 2px solid $red;
+
+    &:hover,
+    &:focus { color: $red; }
+
+    &:active,
+    &:active { background: $red; }
+}
+
+.btn-green,
+.btn-green-sm { padding: 15px 0; width: 100%; border: 2px solid $green; }
+
+.btn-green-sm,
+.btn-red-sm { width: auto; padding: 3px 5px; font-size: em(13); }

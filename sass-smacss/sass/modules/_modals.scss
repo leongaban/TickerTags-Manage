@@ -1,0 +1,165 @@
+/* Modals
+============================================================
+========================================================= */
+
+@import "modals/_add_tag";
+@import "modals/_add_tickers";
+@import "modals/_edit_tag";
+@import "modals/_edit_category";
+@import "modals/_mass_actions";
+@import "modals/_copy_move";
+@import "modals/_user_modal";
+@import "modals/_rest_modal";
+@import "modals/_settings_modal";
+
+.admin-modal,
+.admin-modal2 {
+    position: fixed;
+    z-index: 1050;
+    top: 40px;
+    left: 50%;
+    margin-left: -260px;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 120px 0 rgba(0, 0, 0, 0.19);
+    @include rounded(5px);
+
+    h1 {
+        margin-bottom: 15px;
+        font-family: 'robotolight';
+        font-family: 'robotobold';
+        font-size: em(14);
+        span { margin-left: 5px; font-family: 'robotolight'; color: $gray2; }
+    }
+
+    input {
+        font-size: em(14);
+        padding: 4px 6px;
+        border: 1px solid $gray2;
+        @include rounded(4px);
+    }
+
+    .edit-category {
+        select {
+           padding: 5px 7px !important;
+           height: 28px !important;
+           font-size: 14px;
+           line-height: 1;
+           border: 1px solid $green;
+           border-radius: 4px;
+           -webkit-appearance: none;
+        }
+    }
+
+    .btn-green-sm { padding: 6px 10px; }
+}
+
+.admin-modal2 { z-index: 1051; top: 80px; left: 63%; width: 400px; }
+
+.close-x {
+    position: absolute;
+    z-index: 14;
+    top: -50px;
+    right: -20px;
+    float: right;
+    width: 23px;
+    height: 22px;
+    background-position: -10px -130px;
+    cursor: pointer;
+}
+
+.overlay {
+    display: block;
+    position: fixed;
+    z-index: 1040;
+    top: 0;
+    width: 100%;
+    height: 200%;
+    background: #333;
+    opacity: .6;
+    cursor: pointer;
+}
+.modal-thumbsup-alert {
+    position: relative;
+    z-index: 1050;
+    top: 15%;
+}
+.ico-error {
+    margin: 0 auto;
+    width: 22px;
+    height: 18px;
+    background-position: -170px -90px;
+}
+
+.ico-green-thumb-up {
+    margin: 0 auto;
+    width: 19px;
+    height: 20px;
+    background-position: -121px -81px;
+}
+
+.modal-default {
+    position: absolute;
+    z-index: 1050;
+    left: 50%;
+    margin: 0 auto;
+    margin-left: -250px;
+    padding: 20px;
+    width: 500px;
+    font-family: 'robotolight';
+    line-height: 24px;
+    background: $gray4;
+    border: 1px solid #000;
+    -webkit-box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 7px 10px 0px rgba(0,0,0,0.4);
+    @include rounded(4px);
+
+    //hr {
+    //    margin: 15px 0;
+    //    height: 0px;
+    //    border-top:    1px solid $gray_47;
+    //    border-left:   1px solid $gray_47;
+    //    border-right:  1px solid $gray_47;
+    //    border-bottom: 1px solid $gray_47;
+    //    background: $gray_47;
+    //}
+
+    a { font-size: em(14); color: $green; text-decoration:underline; cursor: pointer; }
+
+    p { margin: 20px 0; text-align: center; color: #fff; }
+
+    .ticker {
+        float: left;
+        top: 3px;
+        margin-left: 10px;
+        padding: 6px 10px;
+        clear: none;
+        cursor: default;
+    }
+
+    .light-help { margin: 0 auto; }
+    .x-splash { position: absolute; top: -35px; right: -10px; }
+
+    .btn-gray {
+        text-align: center;
+        padding-right: 0;
+        padding-left: 0;
+        border: 0;
+        cursor: pointer;
+    }
+}
+
+.btn-modal {
+    margin-top: 10px;
+    padding: 12px 0;
+    width: 100%;
+    font-family: robotoregular;
+    color: #fff;
+    background: $green;
+    border: 2px solid $green;
+    @include rounded(4px);
+    @include transition(all, .25s, ease-out);
+    &:hover { color: $green; background: #fff; }
+}
+

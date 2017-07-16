@@ -1,0 +1,67 @@
+<div class="view bulk-add-view">
+    <div class="container bulk-add-view-container">
+        <header class="bulk-header">
+            <h1>Bulk Add</h1>
+            <div class="ticker-search">
+                <input id="searchTickersInput" ng-model="bk.searchTickersInput" placeholder="Select tickers"
+                       ng-change="bk.bulkAddTickerSearch()"
+                       typeahead-wait-ms="500" typeahead-min-length="1" typeahead-wait-ms="500"
+                       type="text" tabindex="1" capitalize></div>
+                       <!-- typeahead="search for search in bk.bulkAddTickerSearch()" -->
+
+            <choose-ticker-list on-add="bk.register(child)" on-select="bk.selectTicker(ticker)"></choose-ticker-list>
+
+            <button class="btn-green" ng-click="bk.bulkaddSubmit()">Submit Tags</button>
+
+            <div class="tag-search">
+                <select ng-model="bk.category">
+                    <option value="brand">Brand</option>
+                    <option value="client">Client</option>
+                    <option value="cashtag">Cashtag</option>
+                    <option value="competitor-name">Competitor Name</option>
+                    <option value="company-name">Company Name</option>
+                    <option value="government">Government / Regulation</option>
+                    <option value="events">Events</option>
+                    <option value="industry">Industry</option>
+                    <option value="news">News</option>
+                    <option value="people">People</option>
+                    <option value="philanthropic">Philanthropic</option>
+                    <option value="place">Place</option>
+                    <option value="products">Products</option>
+                    <option value="product-category">Product Category</option>
+                    <option value="product-competing">Product (competing)</option>
+                    <option value="product-feature">Product Feature</option>
+                    <option value="problem">Problem</option>
+                    <option value="related-company-name">Related Company Name</option>
+                    <option value="subsidiary">Subsidiary</option>
+                    <option value="trend">Trend</option>
+                    <option value="event">Event</option>
+                </select>
+            </div>
+
+            <section class="event-priority">
+                <div class="fl mb5 w100">
+                    <p>Event</p>
+                    <input type="checkbox" value="" name="event" ng-model="bk.event"/>
+                </div>
+                <div class="fl w100">
+                    <p>Priority</p>
+                    <input type="checkbox" value="" name="event" ng-model="bk.priority"/>
+                </div>
+            </section>
+
+        </header>
+
+        <section class="bulk-body">
+            <textarea id="terms-textarea" rows="20" placeholder="Tags - one per line" ng-model="bk.ticker_tags"></textarea>
+        </section>
+
+         <div class="chosen-tickers" ng-class="{ 'display-on' : bk.bulkTickersLoaded }">
+            <ul>
+                <li ng-repeat="ticker in bk.bulkTickers track by $index">
+                    <span ng-click="bk.removeTicker(ticker)">{{ ticker.ticker }} <div class="small-white-x"></div></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

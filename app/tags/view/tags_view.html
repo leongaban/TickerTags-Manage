@@ -1,0 +1,27 @@
+<section class="container tags-view-container">
+
+	<tags-header
+		ng-hide="tgs.searchState"
+		ticker="tgs.ticker"
+		on-load="tgs.loadTags()">
+	</tags-header>
+
+	<toggle-tags-table
+		on-toggle="tgs.toggle(tab)"
+		table="tgs.tableType"
+		totals="tgs.totals">
+	</toggle-tags-table>
+
+	<tags-table
+		ticker="tgs.ticker"
+		tags="tgs.tags"
+		table="tgs.tableType"
+		on-update="tgs.updateTag(tag, type)"
+		on-approve="tgs.approveReport(tag)"
+		on-deny="tgs.denyReport(tag)"
+		on-delete="tgs.delete(tag)"
+		on-reload="tgs.reload(tags, table)"
+		loading="tgs.loading">
+	</tags-table>
+
+</section>

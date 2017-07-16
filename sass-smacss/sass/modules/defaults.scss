@@ -1,0 +1,91 @@
+/* Start of styles | Defaults
+============================================================
+========================================================= */
+
+html, body { width: 100%; height: 100%; } 
+
+body {
+    overflow-x: hidden;
+    min-width: 1000px;
+    font-family: 'robotoregular', Arial, sans-serif;
+    font-size: em(16);
+    color: $gray4;
+    background-image: url("../imgs/geo.png");
+}
+
+sup, sub { font-size: 75%; line-height: 0; vertical-align: baseline; }
+sup { top: -0.5em; left: 0.15em; }
+sub { bottom: -0.25em; }
+
+strong { font-family: 'robotobold'; font-weight: 600; }
+
+a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+}
+
+canvas { display: block; vertical-align: bottom; }
+
+.fr              { float: right !important; }
+.fl              { float: left !important; }
+.pos-fixed       { position: fixed; }
+.display-on      { display: block !important; }
+.display-off     { display: none !important; }
+.mt20            { margin-top: 20px !important; }
+.mt10            { margin-top: 10px !important; }
+.mt7             { margin-top: 7px !important; }
+.mr5             { margin-right: 5px !important; }
+.ml10            { margin-left: 10px; }
+.mb5             { margin-bottom: 5px; }
+.mb20            { margin-bottom: 20px !important; }
+.ml5             { margin-left: 5px; }
+.p5              { padding: 5px; }
+.pt0             { padding-top: 0; }
+.pl-20           { padding-left: 20px !important; }
+.top40           { top: 40px !important; }
+.top126          { top: 126px !important; }
+.w20             { width: 20px; }
+.w40             { width: 40px; }
+.w80             { width: 80px !important; }
+.w100            { width: 100px; }
+.w200            { width: 200px; }
+.h40             { height: 40px !important; }
+.f12             { font-size: em(12); }
+.f11             { font-size: em(11); }
+.bold            { font-family: 'robotobold'; font-weight: 600; }
+.normargin       { margin-right: 0 !important; }
+.op5             { opacity: .5; }
+.float-none      { float: none !important; }
+
+.loading-spinner { position: relative; z-index: 1051; padding-top: 70px; width: 100%; height: 40px; }
+
+// Chris easter egg
+.bull { float: right; margin: 10px 40px 0 0; cursor: pointer; }
+
+.chris_container {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 25%;
+    width: 74px;
+    height: 86px;
+    -webkit-animation-name: rock; 
+    -webkit-animation-iteration-count: 2; 
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-duration: 1s;
+}
+
+.chris {
+    position: relative;
+    top: -25px;
+    left: -10px;
+    width: 151px;
+    height: 211px;
+    background-image: url(../../static/chris.png), none;
+}
+
+@-webkit-keyframes rock {  
+    0%   { transform:scale(1,1); }
+    50%  { transform:scale(2,2); }
+    100% { transform:scale(1,1); }
+}

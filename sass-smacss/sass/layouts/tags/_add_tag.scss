@@ -1,0 +1,29 @@
+/* Tags Header
+============================================================
+========================================================= */
+
+.add-tag-widget {
+    position: fixed;
+    z-index: 100;
+    top: 45px;
+    right: -15px;
+    padding: 12px 25px 12px 15px;
+    font-family: 'robotobold';
+    color: #fff;
+    background: $green;
+    border: 1px solid $gray1;
+    cursor: pointer;
+    @include rounded(5px);
+    @include transition(all, .3s, ease-out);
+
+    &:hover {
+        color: $green;
+        background: #fff;
+        border: 1px solid $green;
+    }
+
+    &:active {
+        color: #fff;
+        background: $green;
+    }
+}

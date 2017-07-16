@@ -1,0 +1,52 @@
+/* Ticker Tag buttons
+============================================================
+========================================================= */
+
+.tag, .ticker {
+    float: left;
+    overflow: hidden;
+    position: relative;
+    margin: 0 10px 10px 0;
+    padding: 9px 10px;
+    width: auto;
+    cursor: pointer !important;
+    clear: both;
+    @include rounded(4px);
+}
+
+.ticker {
+    // min-height: 34px;
+    color: #F5F5F5;
+    background: #BFBFBF;
+}
+
+.tag {
+    text-align: left;
+    border: 1px solid $gray1;
+    background: $gray0;
+    @include transition(all, .2s, ease-out);
+
+    &:hover {
+        -webkit-transition : background 2000ms ease-out; 
+        -moz-transition : background 2000ms ease-out;
+        -o-transition : background 2000ms ease-out;
+        background : #fff !important;
+    }
+
+    &.pos,
+    &.neg { color: $gray4; border: 1px solid $gray3; }
+
+    &.pos:after {
+        position: absolute;
+        top: -10px;
+        right: 0;
+        @include triangle(left, 10px, $green);
+    }
+    
+    &.neg:after {
+        position: absolute;
+        right: -10px;
+        bottom: 0;
+        @include triangle(up, 10px, $red);
+    }
+}

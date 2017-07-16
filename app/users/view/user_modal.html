@@ -1,0 +1,82 @@
+<div>
+    <section class="admin-modal user-modal">
+        <div class="close-x" ng-click="um.cancel()"></div>
+        <header>
+            <h1 ng-if="um.modalType == 'edit'">Username: <span class="user-name">{{ um.userObject.username }}</span></h1>
+            <h1 ng-if="um.modalType == 'add'">Add user</h1>
+
+            <div class="user-modal-buttons">
+                <div class="btn-green-sm" ng-click="um.updateUser(um.userObject)">Save</div>
+                <div class="btn-green-sm" ng-click="um.resetPassword(um.userObject.id)" ng-if="um.modalType == 'edit'">Password Reset</div>
+                <div class="btn-red-sm btn-remove" ng-show="um.modalType == 'edit'" ng-click="um.removeUser(um.userObject)">Destroy User</div>
+            </div>
+        </header>
+
+        <section ng-show="um.modalType == 'add'" class="user-modal-row">
+            <label for="userName">Username (email):</label>
+            <input ng-if="um.modalType == 'edit'" id="userName" type="text" placeholder="um.userObject.username" ng-model="um.userObject.username">
+            <input ng-if="um.modalType == 'add'"  id="userName" type="text" placeholder="Email" ng-model="um.userObject.username">
+        </section>
+
+        <section class="user-modal-row">
+            <label for="firstName">First name:</label>
+            <input id="firstName" type="text" placeholder="First name" ng-model="um.userObject.firstname">
+        </section>
+
+        <section class="user-modal-row">
+            <label for="firstName">Last name:</label>
+            <input id="lastName" type="text" placeholder="Last name"  ng-model="um.userObject.lastname">
+        </section>
+
+        <section class="user-modal-row">
+            <label for="userRole">User role:</label>
+            <div class="edit-category">
+                <select ng-model="um.userObject.role">
+                    <option value="Admin">Admin</option>
+                    <option value="Intern">Intern</option>
+                    <option value="Curator">Curator</option>
+                    <option value="Beta">Beta</option>
+                    <option value="Retail">Retail</option>
+                    <option value="Pending">Pending</option>
+                </select>
+            </div>
+        </section>
+
+        <div class="user-active-status">
+            <label for="userStatus" class="float-none">Active status</label>
+            <input id="userStatus" type="checkbox" value="active"
+                   ng-model="um.userObject.active_flag"
+                   ng-checked="um.userObject.active_flag"
+                   name="userStatus" />
+        </div>
+
+        <section class="select-tickers">
+            <label for="chooseTickerInput">User Tickers:</label>
+            <input id="chooseTickerInput"
+                   placeholder="Choose tickers"
+                   ng-model="um.chooseTickerInput"
+                   ng-change="um.userTickerSearch(um.chooseTickerInput)"
+                   typeahead-wait-ms="500" typeahead-min-length="1" typeahead-wait-ms="500"
+                   type="text" required>
+        </section>
+
+        <div class="close-x-dark" ng-show="um.showingTickerList" ng-click="um.closeTickersSearch()"></div>
+
+        <choose-ticker-list on-add="um.register(child)" on-select="um.selectTicker(ticker)">
+        </choose-ticker-list>
+
+        <div class="chosen-tickers" ng-class="{ 'display-on' : um.userTickers }">
+            <ul>
+                <li ng-repeat="ticker in um.userObject.user_tickers track by $index">
+                    <span ng-click="um.removeTicker(ticker)">{{ ticker.ticker }} <div class="small-white-x"></div></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="temp-password" ng-show="um.passwordReset">
+            <h3 class="fl mr5 gray2">Temp password:</h3>
+            <p>{{ um.tempPassword }}</p>
+        </div>
+    </section>
+    <div class="overlay" ng-click="um.cancel()"></div>
+</div>

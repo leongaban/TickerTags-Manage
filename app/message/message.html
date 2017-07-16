@@ -1,0 +1,10 @@
+<div>
+    <div class="modal-thumbsup-alert modal-default">
+        <div ng-show="m.success" class="ico-green-thumb-up"></div>
+        <div ng-hide="m.success" class="ico-error"></div>
+        <hr>
+        <div><p>{{ m.msg }}</p></div>
+        <button class="btn-modal" ng-click="m.cancel()">Dismiss</button>
+    </div>
+    <div class="overlay" ng-click="m.cancel()"></div>
+</div>

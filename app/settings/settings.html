@@ -1,0 +1,56 @@
+<div class="view settings-view">
+    <div class="container settings-container">
+        <header><h1>Settings</h1></header>
+        <section class="settings-personal">
+            <h2>Personal settings</h2>
+            <hr>
+            <form ng-submit="_settings.updatePassword(_settings.passwords)">
+                <div class="long-row">
+                    <input id="change-password" ng-model="_settings.passwords.password_1" type="password" placeholder="password">
+                </div>
+                <div class="long-row">
+                    <input id="change-confirm"  ng-model="_settings.passwords.password_2" type="password" placeholder="confirm password">
+                </div>
+                <div class="long-row">
+                    <button type="submit" class="btn-green-sm">Change password</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="user-permissions" ng-show="_settings.show_permissions">
+            <section class="admin-permissions">
+                <header>Your Permissions</header>
+                <ul>
+                    <li ng-repeat="(setting, status) in _settings.permissions" ng-show="status">
+                        {{setting}}
+                    </li>
+                    <!-- <li ng-show="_settings.permissions.view_tickers">
+                        <div class="check-green"></div><span>View Tickers</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_historics">
+                        <div class="check-green"></div><span>View Historics</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_users">
+                        <div class="check-green"></div><span>View Users</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_alerts">
+                        <div class="check-green"></div><span>View Alerts</span>
+                    </li>
+                    <li ng-show="_settings.permissions.update_alerts">
+                        <div class="check-green"></div><span>Update Alerts</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_users">
+                        <div class="check-green"></div><span>View Manage</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_manage_terms">
+                        <div class="check-green"></div><span>View Manage Terms</span>
+                    </li>
+                    <li ng-show="_settings.permissions.view_terms">
+                        <div class="check-green"></div><span>View Terms</span>
+                    </li> -->
+                </ul>
+            </section>
+        </section>
+
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<header class="ticker-header">
+    <h1>
+        <div class="ticker">
+            <a href="https://www.tickertags.com/dashboard/#/dashboard?portfolio={{ thc.ticker.ticker }}&sort=trend&timespan=ld" target="_blank">
+                {{ :: thc.ticker.ticker }}
+            </a>
+        </div>
+    </h1>
+
+    <h4>- <span ng-bind="thc.ticker.name"></span></h4>
+
+    <div class="price" ng-class="{ 'negative' : thc.ticker.direction == 'negative', 'positive' : thc.ticker.direction == 'positive' }">
+        <em>$</em>{{ thc.ticker.current }}
+    </div>
+
+    <div class="direction" ng-click="thc.togglePercent()" ng-class="{ 'negative' : thc.ticker.direction == 'negative', 'positive' : thc.ticker.direction == 'positive' }">
+         <div ng-show="thc.percent">{{ thc.ticker.percent }}%</div>
+         <div ng-show="!thc.percent"><em>$</em>{{ thc.ticker.amount }}</div>
+    </div>
+
+    <div class="tag-count" ng-bind="thc.allTerms.total"><sub>tags</sub></div>
+
+    <div class="quarterly-reports-btn">
+        <button class="btn-util" ng-click="thc.gotoQuarterlyReports(thc.ticker.ticker)">
+            Manage {{ :: thc.ticker.ticker }} Quarterly Reports
+        </button>
+    </div>
+
+    <form ng-submit="thc.submitNewTag()">
+        <div class="add-tag-input">
+            <div class="add-tag-badge"><h3>New tag</h3></div>
+            <input id="addTermInput" ng-model="thc.newTerm" placeholder="Tag term" type="text" tabindex="1">
+            <div class="edit-category">
+                <select ng-model="thc.newCategory" tabindex="2">
+                    <option value="brand">Brand</option>
+                    <option value="client">Client</option>
+                    <option value="cashtag">Cashtag</option>
+                    <option value="competitor-name">Competitor Name</option>
+                    <option value="company-name">Company Name</option>
+                    <option value="government">Government / Regulation</option>
+                    <option value="events">Events</option>
+                    <option value="industry">Industry</option>
+                    <option value="news">News</option>
+                    <option value="people">People</option>
+                    <option value="philanthropic">Philanthropic</option>
+                    <option value="place">Place</option>
+                    <option value="products">Products</option>
+                    <option value="product-category">Product Category</option>
+                    <option value="product-competing">Product (competing)</option>
+                    <option value="product-feature">Product Feature</option>
+                    <option value="problem">Problem</option>
+                    <option value="related-company-name">Related Company Name</option>
+                    <option value="subsidiary">Subsidiary</option>
+                    <option value="trend">Trend</option>
+                    <option value="event">Event</option>
+                </select>
+            </div>
+            <section class="fl ml10 p5 pt0 f11">
+                <div class="fl mb5 w40">
+                    <p class="mb5">Event</p>
+                    <input type="checkbox" value="" name="event" ng-model="thc.event"/>
+                </div>
+                <div class="fl w40">
+                    <p class="mb5">Priority</p>
+                    <input type="checkbox" value="" name="event" ng-model="thc.priority"/>
+                </div>
+            </section>
+            <button class="btn-green-sm btn-add-tag" tabindex="3">Add Tag</button>
+        </div>
+    </form>
+</header>

@@ -1,0 +1,38 @@
+{
+  "name": "sass-smacss",
+  "version": "0.2.3",
+  "description": "SMACSS based SASS modules for organized style writing.",
+  "homepage": "https://github.com/leongaban/sass-smacss",
+  "main": "sass/main_web.scss",
+  "authors": [
+    "[object Object]"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leongaban/sass-smacss.git"
+  },
+  "keywords": [
+    "sass",
+    "css",
+    "smacss",
+    "stylesheets"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.3",
+    "commit": "3a2261f246b36dc170a0be1d46785d07e601026f"
+  },
+  "_source": "git://github.com/leongaban/sass-smacss.git",
+  "_target": "~0.2.3",
+  "_originalSource": "sass-smacss",
+  "_direct": true
+}
